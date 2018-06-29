@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>
+- (NSInteger)checkPHAuthorizationStatus: (UIViewController *)viewcontroller {
+    PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+    
+    switch (status) {
+        case PHAuthorizationStatusNotDetermined:
+            [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+                
+            }];
+            break;
+        case PHAuthorizationStatusAuthorized:
+            break;
+        case PHAuthorizationStatusRestricted: {
+            
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Sample Map" message:@"We need to have a permit to access to Photos Library to create icon in Label and Image in GroundOverlay. So please allow app to do this!" preferredStyle:UIAlertControllerStyleAlert];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+            }]];
+            [viewcontroller presentViewController:alertController animated:true completion:nil];
+        }
+            break;
+        case PHAuthorizationStatusDenied:
+        {
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Sample Map" message:@"We need to have a permit to access to Photos Library to create icon in Label and Image in GroundOverlay. So please allow app to do this!" preferredStyle:UIAlertControllerStyleAlert];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+            }]];
+            [viewcontroller presentViewController:alertController animated:true completion:nil];
+        }
+            break;
+        default:
+            break;
+    }
+    return status;
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>D3B6EF8F-8B17-40A5-9D23-490509EE16CB</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Normally, place it in Appdelegate to use in everywhere in app</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>ObjC:Photos/ Check PHAuthorizationStatus </string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>route return json </string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>routes.add(method: .get, uri: "/") { (request, response) in
+    do {
+        try response.setBody(json: ["message": "Hello world!!"])
+            .setHeader(.contentType, value: "application/json").completed()
+        
+    } catch {
+        response.setBody(string: "Error").completed(status: .internalServerError)
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>646BCB6E-E04B-45F3-B57B-1742C7BC771D</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>[Perfect] Routes return json </string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

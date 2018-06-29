@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>Camera</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeExpression</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>let picker = UIImagePickerController.init()
+if UIImagePickerController.isSourceTypeAvailable(.camera) {
+    picker.sourceType = .camera
+    picker.delegate = self
+    picker.allowsEditing = true
+    picker.mediaTypes = [kUTTypeImage as String, kUTTypeMovie as String]
+    self.present(picker, animated: true, completion: nil)
+} else {
+    print("Camera is unavailable!")
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>BFF918B2-0500-4DA9-8B6E-754C00134273</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Create by Chung</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift - Camera</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

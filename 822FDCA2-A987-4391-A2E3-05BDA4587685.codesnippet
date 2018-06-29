@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>@IBDesignable
+class MTView: UIView {
+
+    @IBInspectable
+    var shadowColor: UIColor = UIColor.black{
+        didSet {
+            self.layer.shadowColor = UIColor.black.cgColor
+        }
+    }
+    
+    @IBInspectable
+    var shadowOpacity: CGFloat = 0.8 {
+        didSet {
+            self.layer.shadowOpacity = Float(shadowOpacity)
+        }
+    }
+    @IBInspectable
+    var shadowOffset: CGSize = CGSize.zero {
+        didSet {
+            self.layer.shadowOffset = shadowOffset
+        }
+    }
+    @IBInspectable
+    var shadowRadius: CGFloat = 0 {
+        didSet {
+            self.layer.shadowRadius = shadowRadius
+        }
+    }
+
+
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>822FDCA2-A987-4391-A2E3-05BDA4587685</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift 3: Drop shadow View</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

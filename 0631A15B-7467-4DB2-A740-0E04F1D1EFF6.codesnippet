@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>extension UIImage {
+    func cropImageIfNeed(_ maxSize: CGSize) -&gt; UIImage {
+        let isTooBig = size.width  &gt; maxSize.width || size.height &gt; maxSize.height
+        if isTooBig {
+            let
+            maxRect       = CGRect(origin: CGPoint.zero, size: maxSize),
+            scaledRect    = AVMakeRect(aspectRatio: self.size, insideRect: maxRect),
+            scaledSize    = scaledRect.size,
+            targetRect    = CGRect(origin: CGPoint.zero, size: scaledSize),
+            width         = Int(scaledSize.width),
+            height        = Int(scaledSize.height),
+            cgImage       = self.cgImage,
+            bitsPerComp   = cgImage?.bitsPerComponent,
+            compsPerPixel = 4, // RGBA
+            bytesPerRow   = width * compsPerPixel,
+            colorSpace    = cgImage?.colorSpace,
+            bitmapInfo    = cgImage?.bitmapInfo,
+            context       = CGContext(
+                data: nil,
+                width: width,
+                height: height,
+                bitsPerComponent: bitsPerComp!,
+                bytesPerRow: bytesPerRow,
+                space: colorSpace!,
+                bitmapInfo: (bitmapInfo?.rawValue)!)
+            
+            if context != nil {
+                context!.interpolationQuality = CGInterpolationQuality.low
+                context?.draw(cgImage!, in: targetRect)
+                if let scaledCGImage = context?.makeImage() {
+                    return UIImage(cgImage: scaledCGImage)
+                }
+            }
+        }
+        return self
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>0631A15B-7467-4DB2-A740-0E04F1D1EFF6</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>ThangTM</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift 4: Crop Image using AVMakeRect</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

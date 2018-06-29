@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>Get parentViewController of UIView</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>public extension UIView {
+    public func parentViewController() -&gt; UIViewController? {
+        var parentResponder: UIResponder? = self
+        while true {
+            guard let nextResponder = parentResponder?.nextResponder() else { return nil }
+            if let viewController = nextResponder as? UIViewController {
+                return viewController
+            }
+            parentResponder = nextResponder
+        }
+}
+    }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>638BD3F9-A14A-4CD0-AFC2-C6DC5AE7CBD5</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift 2: Get parentViewController of UIView</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

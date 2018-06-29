@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>globalQueue</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>import UIKit
+
+extension DispatchQueue {
+    static var userInteractive: DispatchQueue { return DispatchQueue.global(qos: .userInteractive) }
+    static var userInitiated: DispatchQueue { return DispatchQueue.global(qos: .userInitiated) }
+    static var utility: DispatchQueue { return DispatchQueue.global(qos: .utility) }
+    static var background: DispatchQueue { return DispatchQueue.global(qos: .background) }
+    
+    func after(_ delay: TimeInterval, execute closure: @escaping () -&gt; Void) {
+        asyncAfter(deadline: .now() + delay, execute: closure)
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>7D36B80B-2543-4467-B2F6-5FC9B52CF56A</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift - GlobalQueue</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

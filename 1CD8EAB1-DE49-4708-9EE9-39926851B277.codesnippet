@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>    //  Save video to library image camera
+    private func saveVideo(videoURL: URL, completion: @escaping (URL, String) -&gt; Void ) {
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: videoURL)
+        }) { saved, error in
+            if saved {
+                let fetchOptions = PHFetchOptions()
+                fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
+                
+                // After uploading we fetch the PHAsset for most recent video and then get its current location url
+                
+                let fetchResult = PHAsset.fetchAssets(with: .video, options: fetchOptions).lastObject
+                PHImageManager().requestAVAsset(forVideo: fetchResult!, options: nil, resultHandler: { (avurlAsset, audioMix, dict) in
+                    let newObj = avurlAsset as! AVURLAsset
+                    let localIdentifier = fetchResult!.localIdentifier
+                    // This is the URL we need now to access the video from gallery directly.
+                    completion(newObj.url, localIdentifier)
+                })
+            }
+        }
+    }
+    </string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>1CD8EAB1-DE49-4708-9EE9-39926851B277</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Save video to cameraroll</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

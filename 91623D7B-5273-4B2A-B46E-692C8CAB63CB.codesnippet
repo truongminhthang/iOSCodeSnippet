@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>extension UICollectionView {
+    func mt_getIndexPathsForElementsInRect(rect: CGRect) -&gt; [NSIndexPath]{
+        let allLayoutAttributes = collectionViewLayout.layoutAttributesForElementsInRect(rect)
+        guard allLayoutAttributes == nil else {
+            return []
+        }
+        if allLayoutAttributes?.count == 0 {
+            return []
+        }
+        var result : [NSIndexPath] = []
+        for item in allLayoutAttributes! {
+            result += [item.indexPath]
+        }
+        return result
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>91623D7B-5273-4B2A-B46E-692C8CAB63CB</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>swift: get indexpaths for elements in rect </string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>instanceFromNibFile</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>static var instance: &lt;#class#&gt;! {
+        if let viewArray  =  NSBundle.mainBundle().loadNibNamed("&lt;#name#&gt;", owner: nil, options: nil) {
+            for item in viewArray {
+                if item is &lt;#class#&gt; {
+                    return item as? &lt;#class#&gt;
+                }
+            }
+        }
+        return nil
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        &lt;#prepareBeforeUsing#&gt;
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>958F1026-F13E-48C0-ACB8-C1ED5ADA6C5F</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift: Get View  - from nib</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

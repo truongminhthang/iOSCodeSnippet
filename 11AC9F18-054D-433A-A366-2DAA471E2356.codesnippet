@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>Scale to fill the other view</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>public extension UIView {
+ public func scale(toFill parentView: UIView) {
+        if superview == nil {
+            parentView.addSubview(self)
+        }
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.topAnchor.constraintEqualToAnchor(parentView.topAnchor).active = true
+        self.bottomAnchor.constraintEqualToAnchor(parentView.bottomAnchor).active = true
+        self.leadingAnchor.constraintEqualToAnchor(parentView.leadingAnchor).active = true
+        self.trailingAnchor.constraintEqualToAnchor(parentView.trailingAnchor).active = true
+    }
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>11AC9F18-054D-433A-A366-2DAA471E2356</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift 2: Scale to fill the other view</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

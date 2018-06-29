@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>
+class CustomAnimationSegue : UIStoryboardSegue, UIViewControllerTransitioningDelegate {
+    override func perform() {
+        destinationViewController.transitioningDelegate = self
+        super.perform()
+    }
+    
+    func animationControllerForDismissedController(dismissed: UIViewController) -&gt; UIViewControllerAnimatedTransitioning? {
+        return self
+    }
+    
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -&gt; UIViewControllerAnimatedTransitioning? {
+        return self
+    }
+    
+}
+
+// MARK: - UIViewControllerAnimatedTransitioning
+
+extension CustomAnimationSegue: UIViewControllerAnimatedTransitioning {
+    
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -&gt; NSTimeInterval {
+        return 0.35
+    }
+    
+    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+        let containerView = transitionContext.containerView()!
+        
+        let toView = transitionContext.viewForKey(UITransitionContextToViewKey)!
+        
+        let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
+        let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)
+        
+        
+        if toViewController == destinationViewController {
+            //present
+            UIView.performWithoutAnimation({
+                toView.frame.origin.x = (fromViewController?.view.frame.width)!
+                
+                toView.frame.origin.y = (fromViewController?.view.frame.height)!
+                
+                containerView.addSubview(toView)
+            })
+            
+            let duration = transitionDuration(transitionContext)
+            UIView.animateWithDuration(duration, animations: {
+                toView.frame.origin.x = 0
+                toView.frame.origin.y = 0
+                }, completion: { (success) in
+                    transitionContext.completeTransition(success)
+            })
+        } else {
+            //dismiss
+            let fromView = transitionContext.viewForKey(UITransitionContextFromViewKey)!
+            
+            UIView.performWithoutAnimation({
+                containerView.insertSubview(toView, belowSubview: fromView)
+            })
+            let duration = transitionDuration(transitionContext)
+            
+            UIView.animateWithDuration(duration, animations: {
+                fromView.frame.size = CGSizeZero
+                }, completion: { (success) in
+                    transitionContext.completeTransition(success)
+            })
+        }
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>4FEEEE2A-ED6A-4593-BFAF-7C42CC367DF5</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift: CustomSegue</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

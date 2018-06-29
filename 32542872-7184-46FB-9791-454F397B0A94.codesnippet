@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>create an entity from context</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>static func makeInstance() -&gt; PlaceEntity {
+        if #available(iOS 10.0, *) {
+            return PlaceEntity(context: AppDelegate.share.context)
+        } else {
+            return NSEntityDescription.insertNewObject(forEntityName: "PlaceEntity", into: AppDelegate.share.context) as! PlaceEntity
+        }
+    }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>32542872-7184-46FB-9791-454F397B0A94</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift 3: Create an Entity from context</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>Capture Screen </string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string> extension UIScrollView {
+    func screenShot() -&gt; UIImage? {
+        self.contentOffset = CGPoint.zero
+        self.showsHorizontalScrollIndicator = false
+        self.showsVerticalScrollIndicator = false
+        var image: UIImage?
+        UIGraphicsBeginImageContextWithOptions(self.contentSize, true, 2.0)
+        let savedContentOffset = self.contentOffset
+        let savedFrame = self.frame
+        self.contentOffset = CGPoint.zero
+        self.frame = CGRect(origin: CGPoint.zero, size: self.contentSize)
+        self.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        image = UIGraphicsGetImageFromCurrentImageContext();
+        self.contentOffset = savedContentOffset
+        self.frame = savedFrame
+        UIGraphicsEndImageContext()
+        return image
+    }
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>C3CC5FAA-C607-44E8-94F0-36B7F92E79BE</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift 2.3: Capture Screen </string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

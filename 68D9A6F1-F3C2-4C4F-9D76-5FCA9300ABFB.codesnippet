@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>//
+//  DataController.swift
+//  fetchedResultsController
+//
+//  Created by Admin on 5/21/16.
+//  Copyright © 2016 Admin. All rights reserved.
+//
+
+import UIKit
+import CoreData
+class DataController: NSObject {
+    
+    let modelName = "data"
+    
+    lazy var context: NSManagedObjectContext = {
+        
+        var managedObjectContext = NSManagedObjectContext(
+            concurrencyType: .MainQueueConcurrencyType)
+        
+        managedObjectContext.persistentStoreCoordinator = self.psc
+        return managedObjectContext
+    }()
+    
+    private lazy var psc: NSPersistentStoreCoordinator = {
+        
+        let coordinator = NSPersistentStoreCoordinator(
+            managedObjectModel: self.managedObjectModel)
+        
+        let url = self.applicationDocumentsDirectory
+            .URLByAppendingPathComponent(self.modelName)
+        
+        do {
+            let options =
+                [NSMigratePersistentStoresAutomaticallyOption : true]
+            
+            try coordinator.addPersistentStoreWithType(
+                NSSQLiteStoreType, configuration: nil, URL: url,
+                options: options)
+        } catch  {
+            print("Error adding persistent store.")
+        }
+        
+        return coordinator
+    }()
+    
+    private lazy var managedObjectModel: NSManagedObjectModel = {
+        
+        let modelURL = NSBundle.mainBundle()
+            .URLForResource(self.modelName,
+                            withExtension: "momd")!
+        return NSManagedObjectModel(contentsOfURL: modelURL)!
+    }()
+    
+    private lazy var applicationDocumentsDirectory: NSURL = {
+        let urls = NSFileManager.defaultManager().URLsForDirectory(
+            .DocumentDirectory, inDomains: .UserDomainMask)
+        return urls[urls.count-1]
+    }()
+    
+    func saveContext () {
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch let error as NSError {
+                print("Error: \(error.localizedDescription)")
+                abort()
+            }
+        }
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>68D9A6F1-F3C2-4C4F-9D76-5FCA9300ABFB</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift: DataController </string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

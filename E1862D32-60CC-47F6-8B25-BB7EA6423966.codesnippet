@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>struct MustacheHelper: MustachePageHandler {
+    var values: MustacheEvaluationContext.MapType
+    
+    func extendValuesForResponse(context contxt: MustacheWebEvaluationContext, collector: MustacheEvaluationOutputCollector) {
+        contxt.extendValues(with: values)
+        do {
+            try contxt.requestCompleted(withCollector: collector)
+        } catch {
+            let response = contxt.webResponse
+                response.appendBody(string: "\(error)").completed(status: .internalServerError)
+            
+        }
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>E1862D32-60CC-47F6-8B25-BB7EA6423966</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>[Perfect] Mustache Helper</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

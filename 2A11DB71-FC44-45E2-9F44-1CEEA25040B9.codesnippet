@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>Bỏ dấu tiếng việt</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>extension String {
+    var asciiString: String? {
+        if let data = self.data(using: String.Encoding.ascii, allowLossyConversion: true){
+            return String.init(data: data, encoding: String.Encoding.ascii)
+        }
+        return nil
+    }
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>2A11DB71-FC44-45E2-9F44-1CEEA25040B9</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift 3: Bỏ dấu tiếng việt</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

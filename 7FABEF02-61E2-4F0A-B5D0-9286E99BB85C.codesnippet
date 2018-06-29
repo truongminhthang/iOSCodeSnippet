@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>//
+//  GoogleAdsMob.swift
+//  Cleaner
+//
+//  Created by ChungTran on 10/18/17.
+//  Copyright © 2017 BaBaBiBo. All rights reserved.
+//
+
+import UIKit
+import GoogleMobileAds
+
+
+//MARK: - Create GoogleAdMob Class
+class GoogleAdMob: NSObject {
+    
+    //MARK: - Google Ads Unit ID
+    struct Key {
+        static var interstitial = "ca-app-pub-1435684048935421/7918441836"
+        static var banner = "ca-app-pub-3940256099942544/2934735716"
+    }
+    
+    static let shared : GoogleAdMob = GoogleAdMob()
+    private var isInitializeInterstitial = false
+    private var interstitialAds: GADInterstitial!
+
+    var isTestMode = false
+    
+    func load(`for` bannerView: GADBannerView, at viewController: UIViewController) {
+        guard Reachability.shared.connection != .none else {return}
+        bannerView.adUnitID = Key.banner
+        bannerView.rootViewController = viewController
+        if let vc = viewController as? GADBannerViewDelegate {
+            bannerView.delegate = vc
+        } else {
+            bannerView.delegate = self
+        }
+        bannerView.load(GADRequest())
+    }
+    
+    private func createInterstitial() {
+        guard !isTestMode else {return}
+        interstitialAds = GADInterstitial(adUnitID: Key.interstitial)
+        interstitialAds.delegate = self
+        interstitialAds.load(GADRequest())
+    }
+    
+    func showInterstitial(at viewController: UIViewController? = nil) {
+        guard !isTestMode else {return}
+        guard Reachability.shared.connection != .none else {return}
+        if interstitialAds == nil {
+            createInterstitial()
+        }
+        let displayVC = viewController ??  (UIApplication.shared.keyWindow?.rootViewController)!
+        if interstitialAds.isReady {
+            interstitialAds.present(fromRootViewController:displayVC)
+        } else {
+            createInterstitial()
+        }
+    }
+   
+}
+
+// MARK: - GADInterstitialDelegate
+
+extension GoogleAdMob: GADInterstitialDelegate {
+    
+    func interstitialDidReceiveAd(_ ad: GADInterstitial) {
+        showInterstitial()
+    }
+    
+    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+        
+    }
+    func interstitialWillDismissScreen(_ ad: GADInterstitial) {
+        
+    }
+    func interstitialWillPresentScreen(_ ad: GADInterstitial) {
+        
+    }
+    func interstitialWillLeaveApplication(_ ad: GADInterstitial) {
+        
+    }
+    func interstitialDidFail(toPresentScreen ad: GADInterstitial) {
+        
+    }
+    func interstitial(_ ad: GADInterstitial, didFailToReceiveAdWithError error: GADRequestError) {
+        print("\(error.description)")
+        
+    }
+}
+
+// MARK: - GADBannerViewDelegate
+
+extension GoogleAdMob: GADBannerViewDelegate {
+    
+    // MARK: - GADBannerViewDelegate methods
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        // Reposition the banner ad to create a slide down effect
+        let translateTransform = CGAffineTransform(translationX: 0, y: bannerView.bounds.size.height)
+        bannerView.transform = translateTransform
+        UIView.animate(withDuration: 0.5) {
+            bannerView.transform = CGAffineTransform.identity
+        }
+    }
+    
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        print(error)
+        bannerView.backgroundColor = UIColor.clear
+    }
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>7FABEF02-61E2-4F0A-B5D0-9286E99BB85C</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Google Ads </string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

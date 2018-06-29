@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>access camera and photolibrary</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>&lt;key&gt;NSCameraUsageDescription&lt;/key&gt;
+    &lt;string&gt;Used to capture new image for photo effect&lt;/string&gt;
+    &lt;key&gt;NSPhotoLibraryUsageDescription&lt;/key&gt;
+    &lt;string&gt;Used to select an image for photo effect&lt;/string&gt;
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>CEBB538B-1BE9-47B1-8481-076C75148B46</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.XML</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift 3: Plist access camera and photolibrary</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

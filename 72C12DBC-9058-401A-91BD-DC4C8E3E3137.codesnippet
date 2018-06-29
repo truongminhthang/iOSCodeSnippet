@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>save camera roll</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string> // Set image url asset library image camera
+    func saveToCameraRoll(image: UIImage, completion: @escaping (String) -&gt; Void) {
+        var placeHolder: PHObjectPlaceholder? = nil
+        PHPhotoLibrary.shared().performChanges({
+            let creationRequest = PHAssetChangeRequest.creationRequestForAsset(from: image)
+            placeHolder = creationRequest.placeholderForCreatedAsset!
+        }, completionHandler: { success, error in
+            guard success, let placeholder = placeHolder else {
+                return
+            }
+            let localID = placeholder.localIdentifier
+            let assetID = localID.replacingOccurrences(of: "/.*", with: "", options: [.regularExpression], range: nil)
+            let ext = "JPG"
+            let assetURLStr = "assets-library://asset/asset.\(ext)?id=\(assetID)&amp;ext=\(ext)"
+            completion(assetURLStr)
+        })
+    }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>72C12DBC-9058-401A-91BD-DC4C8E3E3137</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift - Save to CameraRoll and get assetURL</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

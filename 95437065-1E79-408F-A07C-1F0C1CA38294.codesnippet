@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>EncodeRestorableState</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>// Chú ý: Mọi Restore Identifier ở Storyboard cần được định nghĩa để có thể sử dụng được tính năng này
+
+
+// MARK: - &lt;#Mark#&gt;
+
+extension ViewController {
+    override func encodeRestorableState(with coder: NSCoder) {
+        coder.encode(tf.text)
+        coder.encode(segmentControl.selectedSegmentIndex, forKey: "selectedSegmentIndex")
+        super.encodeRestorableState(with: coder)
+    }
+    
+    override func decodeRestorableState(with coder: NSCoder) {
+        tf.text = coder.decodeObject() as? String
+        segmentControl.selectedSegmentIndex = coder.decodeInteger(forKey: "selectedSegmentIndex")
+        super.decodeRestorableState(with: coder)
+    }
+}
+
+
+// MARK: - &lt;#Mark#&gt;
+
+extension AppDelegate {
+    func application(_ application: UIApplication, shouldSaveApplicationState coder: NSCoder) -&gt; Bool {
+        return true
+    }
+    
+    func application(_ application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -&gt; Bool {
+        return true
+    }
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>95437065-1E79-408F-A07C-1F0C1CA38294</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Mọi restoreIdentifier trong storyboard cần được định nghĩa để có thể sử dụng tính năng này </string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift 3: EncodeRestorableState</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

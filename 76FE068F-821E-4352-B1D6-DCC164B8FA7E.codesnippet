@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>StringOrComment</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>class BaseModelController: NSObject, UIPageViewControllerDataSource {
+    
+    var viewcontrollers: [UIViewController] = {
+        let dateFormatter = DateFormatter()
+        let pageData = dateFormatter.monthSymbols
+        return pageData!.map{ data in
+            let dataViewController = DataViewController.instance
+            dataViewController.dataObject = data
+            return dataViewController
+            }
+    }()
+    
+    func viewControllerAtIndex(_ index: Int) -&gt; UIViewController? {
+        // Return the data view controller for the given index.
+        if (self.viewcontrollers.count == 0) || (index &gt;= self.viewcontrollers.count) || (index &lt; 0) {
+            return nil
+        }
+        return viewcontrollers[index]
+    }
+    
+    func indexOfViewController(_ viewController: UIViewController) -&gt; Int {
+        return viewcontrollers.index(of: viewController) ?? NSNotFound
+    }
+    
+    // MARK: - Page View Controller Data Source
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -&gt; UIViewController? {
+        var index = self.indexOfViewController(viewController)
+        if (index == 0) || (index == NSNotFound) {
+            return nil
+        }
+        
+        index -= 1
+        return self.viewControllerAtIndex(index)
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -&gt; UIViewController? {
+        var index = self.indexOfViewController(viewController)
+        if index == NSNotFound {
+            return nil
+        }
+        
+        index += 1
+        if index == self.viewcontrollers.count {
+            return nil
+        }
+        return self.viewControllerAtIndex(index)
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>76FE068F-821E-4352-B1D6-DCC164B8FA7E</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift 3: Setup PageViewController - BaseModelController</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

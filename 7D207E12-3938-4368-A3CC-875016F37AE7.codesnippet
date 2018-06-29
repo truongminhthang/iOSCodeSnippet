@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>func populateCheapVenueCountLabel() {
+    
+    // $ fetch request
+    let fetchRequest = NSFetchRequest(entityName: "Venue")
+    fetchRequest.resultType = .CountResultType
+    fetchRequest.predicate = cheapVenuePredicate
+    
+    do {
+      
+      let results =
+      try coreDataStack.context
+        .executeFetchRequest(fetchRequest) as! [NSNumber]
+      
+      let count = results.first!.integerValue
+      
+      firstPriceCategoryLabel.text =
+      "\(count) bubble tea places"
+      
+    } catch let error as NSError {
+      
+      print("Could not fetch \(error), \(error.userInfo)")
+    }
+  }
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>7D207E12-3938-4368-A3CC-875016F37AE7</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift: CoreData / Count with predicate</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

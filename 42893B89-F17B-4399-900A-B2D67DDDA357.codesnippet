@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>lockRotate objc</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>- (void)viewWillAppear:(BOOL)animated {
+    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationMaskPortrait];
+    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
+}
+- (BOOL)shouldAutorotate {
+    return YES;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return UIInterfaceOrientationPortrait;
+}
+
+// Implement in Navigation
+
+
+- (BOOL)shouldAutorotate {
+    UIViewController *topViewController = self.topViewController;
+    if (topViewController) {
+        return [topViewController shouldAutorotate];
+    }
+    return NO;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    UIViewController *topViewController = self.topViewController;
+    if (topViewController) {
+        return [topViewController supportedInterfaceOrientations];
+    }
+    return UIInterfaceOrientationMaskAll;
+}
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    UIViewController *topViewController = self.topViewController;
+    if (topViewController) {
+        return [topViewController preferredInterfaceOrientationForPresentation];
+    }
+    return UIInterfaceOrientationPortrait;
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>42893B89-F17B-4399-900A-B2D67DDDA357</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>ObjC: Lock rotate</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>class DirectionServices: NSObject {
+    func queryDirection(source: CLLocationCoordinate2D, target: CLLocationCoordinate2D, callBack:@escaping(_ dict: Dictionary&lt;String, AnyObject&gt;) -&gt; ()) {
+        let urlString = "https://maps.googleapis.com/maps/api/directions/json?origin=\(source.latitude),\(source.longitude)&amp;destination=\(target.latitude),\(target.longitude)&amp;key=\(AppConstant.googleMapkey)"
+        guard let url = URL(string: urlString) else {return }
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        let task = session.dataTask(with: url)  { (data, response, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let httpResponse = response as? HTTPURLResponse {
+                if httpResponse.statusCode == 200 {
+                    guard let aData = data else { print("Error: did not receive data"); return }
+                    do {
+                        guard let dict = try JSONSerialization.jsonObject(with: aData, options: []) as? Dictionary&lt;String, AnyObject&gt; else {
+                            print("error trying to convert data to JSON")
+                            return
+                        }
+                        callBack(dict)
+                    } catch let error {
+                        print(error)
+                    }
+                }
+            }
+        }
+        task.resume()
+    }
+}
+
+class ImplementDrawPolylineClass: UIViewController {
+    func drawPolyline(json: Dictionary&lt;String, AnyObject&gt;) {
+        
+        
+        guard let routes = json["routes"] as? [Dictionary&lt;String, AnyObject&gt;] else {
+            return
+        }
+        guard let route = routes.first?["overview_polyline"] as? Dictionary&lt;String, AnyObject&gt; else {
+            return
+        }
+        guard let overview_route = route["points"] as? String else {
+            return
+        }
+        let path = GMSPath(fromEncodedPath: overview_route)
+        let polyline = GMSPolyline(path: path)
+        polyline.strokeWidth = 8
+        polyline.strokeColor = UIColor.red
+        polyline.map = mapView
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>C8694FD6-1E03-4F26-A2AF-D9D4568DED6E</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift 3 - Google Map: Draw direction (polyline) from 2 place</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

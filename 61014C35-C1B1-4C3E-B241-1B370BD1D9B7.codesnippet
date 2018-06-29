@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>take and pick photo</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>/* add to info.plist
+&lt;key&gt;NSCameraUsageDescription&lt;/key&gt;
+&lt;string&gt;Used to capture new image for photo effect&lt;/string&gt;
+    &lt;key&gt;NSPhotoLibraryUsageDescription&lt;/key&gt;
+&lt;string&gt;Used to select an image for photo effect&lt;/string&gt;
+*/
+
+// MARK: - UIImagePickerControllerDelegate
+
+extension StudentDetailsTableVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        // Dismiss the picker if the user canceled.
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        chosenImage = info[UIImagePickerControllerEditedImage] as? UIImage //2
+        dismiss(animated:true, completion: nil) //5
+    }
+    
+    func takePhoto(action: UIAlertAction) -&gt; Void {
+        unowned let weakself = self
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = weakself as UIImagePickerControllerDelegate &amp; UINavigationControllerDelegate
+            imagePicker.sourceType = UIImagePickerControllerSourceType.camera;
+            imagePicker.allowsEditing = true
+            weakself.present(imagePicker, animated: true, completion: nil)
+        } else {
+            
+        }
+    }
+    
+    func pickPhoto(action: UIAlertAction) -&gt; Void {
+        unowned let weakself = self
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = weakself as UIImagePickerControllerDelegate &amp; UINavigationControllerDelegate
+        imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary;
+        imagePicker.allowsEditing = true
+        weakself.present(imagePicker, animated: true, completion: nil)
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>61014C35-C1B1-4C3E-B241-1B370BD1D9B7</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift 3: Take and Pick photo</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

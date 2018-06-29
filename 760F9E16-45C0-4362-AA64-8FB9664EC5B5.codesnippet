@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>decode image swift 3</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>func decodeImage(from base64String: String) -&gt; UIImage? {
+        guard let data = NSData(base64EncodedString: base64String, options: NSDataBase64DecodingOptions(rawValue: 0))
+            else {return nil        }
+        return UIImage(data: data)
+    }
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>760F9E16-45C0-4362-AA64-8FB9664EC5B5</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift 3: decode Image from base 64 String </string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

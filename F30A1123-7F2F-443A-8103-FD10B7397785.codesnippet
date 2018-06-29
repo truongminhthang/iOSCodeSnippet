@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>&lt;array&gt;
+		&lt;dict&gt;
+			&lt;key&gt;CFBundleTypeRole&lt;/key&gt;
+			&lt;string&gt;Editor&lt;/string&gt;
+			&lt;key&gt;CFBundleURLSchemes&lt;/key&gt;
+			&lt;array&gt;
+                &lt;string&gt;fb&lt;#facebook id#&gt;&lt;/string&gt;
+			&lt;/array&gt;
+		&lt;/dict&gt;
+	&lt;/array&gt;
+	&lt;key&gt;CFBundleVersion&lt;/key&gt;
+	&lt;string&gt;1&lt;/string&gt;
+	&lt;key&gt;FacebookAppID&lt;/key&gt;
+    &lt;string&gt;&lt;#facebook id#&gt;&lt;/string&gt;
+	&lt;key&gt;FacebookDisplayName&lt;/key&gt;
+    &lt;string&gt;&lt;#name App Display#&gt;&lt;/string&gt;
+	&lt;key&gt;LSApplicationQueriesSchemes&lt;/key&gt;
+	&lt;array&gt;
+		&lt;string&gt;fbapi&lt;/string&gt;
+		&lt;string&gt;fb-messenger-api&lt;/string&gt;
+		&lt;string&gt;fbauth2&lt;/string&gt;
+		&lt;string&gt;fbshareextension&lt;/string&gt;
+	&lt;/array&gt;</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>F30A1123-7F2F-443A-8103-FD10B7397785</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.XML</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>plist: Config for signin facebook</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

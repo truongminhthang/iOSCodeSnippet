@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>Device</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>fileprivate class Keys {
+    static let DEVICE_UNIQUE_ID = "device_unique_id"
+}
+
+class DeviceUtils {
+    
+    static func deviceUniqueId() -&gt; String {
+        let defaults = UserDefaults.standard
+        if let deviceUniqueId: String = defaults.string(forKey: Keys.DEVICE_UNIQUE_ID) {
+            return deviceUniqueId
+        }
+        
+        let deviceUniqueId = "IOS-\(UIDevice.current.identifierForVendor!.uuidString)"
+        defaults.set(deviceUniqueId, forKey: Keys.DEVICE_UNIQUE_ID)
+        defaults.synchronize()
+        
+        return deviceUniqueId
+    }
+    
+    static func os() -&gt; String {
+        return "iOS"
+    }
+    
+    static func osVersion() -&gt; String {
+        return UIDevice.current.systemVersion
+    }
+    
+    static func languageCode() -&gt; String {
+        return NSLocale.current.languageCode!
+    }
+    
+    static func appVersion() -&gt; String {
+        return (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)!
+    }
+    
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>342C9625-07C8-4054-BBAC-CC7EC4CF21A5</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift - DeviceUtils</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

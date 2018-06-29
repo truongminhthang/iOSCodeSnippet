@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>makeInitialViewController</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>makeInitialViewContronller(&lt;#ViewController#&gt;)
+    func makeInitialViewContronller(vc: UIViewController.Type) {
+        let frame = UIScreen.mainScreen().bounds
+        window = UIWindow(frame: frame)
+        let vc = vc.init()
+        let nav = UINavigationController(rootViewController: vc)
+        window?.rootViewController = nav
+        window?.backgroundColor = UIColor.whiteColor()
+        window?.makeKeyAndVisible()
+    }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>A1B01A0A-9AB1-4019-9D6D-57A618D52DA5</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>makeInitialViewController</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

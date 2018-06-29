@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>swizzleMetheod</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>extension NSObject {
+    
+    func swizzleMethod(originalSelector: Selector, swizzledSelector: Selector) {
+        let cls = type(of: self)
+        let originalMethod = class_getInstanceMethod(cls, originalSelector)!
+        let swizzledMethod = class_getInstanceMethod(cls, swizzledSelector)!
+        
+        let flag = class_addMethod(cls, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))
+        if flag {
+            class_replaceMethod(cls, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod))
+        } else {
+            method_exchangeImplementations(originalMethod, swizzledMethod)
+        }
+    }
+    
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>1697EE96-29A9-47A6-B076-E0D7A3D43BC5</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>created by Chung</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>SwizzleMetheod</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

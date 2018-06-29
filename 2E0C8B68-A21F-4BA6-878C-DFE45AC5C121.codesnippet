@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string> func setUpShaDowForView(view: UIView) {
+        view.layer.masksToBounds = false
+        view.layer.shadowOffset = CGSize(width: 2, height: 7)
+        view.layer.shadowRadius = 13
+        view.layer.shadowOpacity = 40
+    }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>2E0C8B68-A21F-4BA6-878C-DFE45AC5C121</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>create shadow for view</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift: Create shadow for view</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

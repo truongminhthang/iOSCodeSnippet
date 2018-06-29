@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>UserDefaults save and Load</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>extension UIImage {
+    func saveToUserDefaults(withKey key: String) {
+        let data = UIImagePNGRepresentation(self)
+        let stringBase64 = data?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
+        stringBase64?.saveToUserDefaults(withKey: key)
+    }
+    
+    static func loadFromUserDefaults(withKey key: String) -&gt; UIImage? {
+        let stringBase64 = String.loadFromUserDefaults(withKey: key)
+        if let data = NSData(base64EncodedString: stringBase64, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters) {
+            return UIImage(data: data)
+        }
+        return nil
+    }
+}
+
+extension Double {
+    func saveToUserDefaults(withKey key: String) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setDouble(self, forKey: key)
+        defaults.synchronize()
+    }
+    static func loadFromUserDefaults(withKey key: String) -&gt; Double {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        return defaults.doubleForKey(key)
+    }
+}
+
+extension Float {
+    func saveToUserDefaults(withKey key: String) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setFloat(self, forKey: key)
+        defaults.synchronize()
+    }
+    static func loadFromUserDefaults(withKey key: String) -&gt; Float {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        return defaults.floatForKey(key)
+    }
+}
+
+extension Bool {
+    func saveToUserDefaults(withKey key: String) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setBool(self, forKey: key)
+        defaults.synchronize()
+    }
+    static func loadFromUserDefaults(withKey key: String) -&gt; Bool {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        return defaults.boolForKey(key)
+    }
+}
+
+extension String {
+    func saveToUserDefaults(withKey key: String) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if String.loadFromUserDefaults(withKey: key) != "" {
+            defaults.setObject(nil, forKey: key)
+        }
+        defaults.setObject(self, forKey: key)
+        defaults.synchronize()
+    }
+    static func loadFromUserDefaults(withKey key: String) -&gt; String {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        return defaults.stringForKey(key) ?? ""
+    }
+    
+}
+
+extension NSURL {
+    func saveToUserDefaults(withKey key: String) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setURL(self, forKey: key)
+        defaults.synchronize()
+    }
+    static func loadFromUserDefaults(withKey key: String) -&gt; NSURL? {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        return defaults.URLForKey(key)
+    }
+    
+}
+
+extension NSData {
+    func saveToUserDefaults(withKey key: String) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(self, forKey: key)
+        defaults.synchronize()
+    }
+    static func loadFromUserDefaults(withKey key: String) -&gt; NSData? {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        return defaults.dataForKey(key)
+    }
+}
+
+extension Int {
+    func saveToUserDefaults(withKey key: String) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setInteger(self, forKey: key)
+        defaults.synchronize()
+    }
+    static func loadFromUserDefaults(withKey key: String) -&gt; Int {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        return defaults.integerForKey(key)
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>E9BC57B3-5068-49BB-AF87-C4A6A9E675EB</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift 2.3: Save to and Load from UserDefaults</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

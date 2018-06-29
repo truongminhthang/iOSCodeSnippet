@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>    func numberOfSectionsInTableView(tableView: UITableView) -&gt; Int {
+        return fetchedResultsController.sections!.count
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -&gt; Int {
+        let sections = fetchedResultsController.sections![section]
+        return sections.numberOfObjects
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -&gt; UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        configureCell(cell, indexPath: indexPath)
+        return cell
+    }
+    
+    func tableView( tableView : UITableView,  titleForHeaderInSection section: Int)-&gt;String {
+        return fetchedResultsController.sections![section].name
+    }
+
+    func configureCell(cell: UITableViewCell, indexPath: NSIndexPath) {
+        let &lt;#object#&gt; = fetchedResultsController.objectAtIndexPath(indexPath) as! &lt;#classMO#&gt;
+    }
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>68500D1D-C56B-457C-AA7F-AF433ACE923E</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift: CoreData / fetchedResultController DataSource</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

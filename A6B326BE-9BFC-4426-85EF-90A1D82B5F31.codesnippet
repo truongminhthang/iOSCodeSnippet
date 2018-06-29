@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -&gt; [UITableViewRowAction]? {
+            let shareAction = UITableViewRowAction(style: .normal, title: "Share") { (action, indexPath) in
+                let defaultText = "Just checking in at " + self.objects[indexPath.row].description
+                let activityController = UIActivityViewController(activityItems: [defaultText], applicationActivities: nil)
+                self.presentViewController(activityController, animated: true, completion: nil)
+            }
+            
+            let deleteAction = UITableViewRowAction(style: .default, title: "Delete") { (action, indexPath) in
+                self.objects.removeAtIndex(indexPath.row)
+                self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            }
+            let moreAction = UITableViewRowAction(style: .normal, title: "More") { (action, indexPath) in
+                &lt;#code#&gt;
+            }
+            moreAction.backgroundColor = UIColor(patternImage: UIImage(named: "&lt;#home#&gt;")!)
+            return [deleteAction, shareAction, moreAction]</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>A6B326BE-9BFC-4426-85EF-90A1D82B5F31</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift: Add UITableViewCellAction</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

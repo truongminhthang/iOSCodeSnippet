@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>func getSum(forKeyPath: String) -&gt; Double? {
+        let expressionName = "sum"
+        let fetchRequest = NSFetchRequest(entityName: entityName)
+        fetchRequest.resultType = .DictionaryResultType
+        
+        //2
+        let sumExpressionDesc = NSExpressionDescription()
+        sumExpressionDesc.name = expressionName
+        
+        //3
+        sumExpressionDesc.expression =
+            NSExpression(forFunction: "sum:",
+                         arguments:[NSExpression(forKeyPath: forKeyPath)])
+        
+        sumExpressionDesc.expressionResultType =
+            .DoubleAttributeType
+        
+        //4
+        fetchRequest.propertiesToFetch = [sumExpressionDesc]
+        
+        //5
+        do {
+            let moc = AppDelegate.shareInstance.dataController.context
+
+            let results = try moc.executeFetchRequest(fetchRequest) as! [NSDictionary]
+            
+            let resultDict =  results.first!
+            let numDeals = resultDict[expressionName] as! Double
+            return numDeals
+            
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        return nil
+    }
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>9D11FADD-3AD2-4A17-A1B3-853002357DE8</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift: CoreData / get sumif</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

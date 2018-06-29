@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>designable imageView</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>import UIKit
+@IBDesignable
+class ImageView: UIImageView {
+    @IBInspectable
+    var borderWidth: Float = 0 {
+        didSet {
+            self.layer.borderWidth = CGFloat(borderWidth)
+        }
+    }
+    @IBInspectable
+    var borderColor: UIColor = UIColor.black {
+        didSet {
+            self.layer.borderColor = borderColor.cgColor
+        }
+    }
+    
+    @IBInspectable
+    var cornerRadius: CGFloat = 0 {
+        didSet {
+            if cornerRadius == -1 {
+                self.layer.cornerRadius = self.bounds.width &lt; self.bounds.height ? self.bounds.width * 0.5 : self.bounds.height * 0.5
+            } else {
+                self.layer.cornerRadius = cornerRadius
+            }
+            self.clipsToBounds = true
+        }
+    }
+    
+    override var image: UIImage? {
+        didSet {
+            self.contentMode = .scaleAspectFill
+        }
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>07A84DD7-7442-4EFF-9F66-41C720F142AC</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift 3: Designable ImageView</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

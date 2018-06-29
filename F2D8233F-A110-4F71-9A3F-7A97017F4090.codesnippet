@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string> //1
+    fetchRequest = NSFetchRequest(entityName: "Venue")
+    
+    //2
+    asyncFetchRequest =
+      NSAsynchronousFetchRequest(fetchRequest: fetchRequest)
+      { [unowned self] (result: NSAsynchronousFetchResult! )
+      -&gt; Void in
+      self.venues = result.finalResult as! [Venue]
+      self.tableView.reloadData()
+    }
+    
+    //3
+    do {
+      try coreDataStack.context.executeRequest(asyncFetchRequest)
+      //Returns immediately, cancel here if you want
+    } catch let error as NSError {
+        print("Could not fetch \(error), \(error.userInfo)")
+    }
+  }
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>F2D8233F-A110-4F71-9A3F-7A97017F4090</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift: CoreData / asyncFetchRequest</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

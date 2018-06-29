@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>Plist services swift 3</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>
+import Foundation
+
+class PlistServices {
+    func getDictionaryFrom(plist: String) -&gt; Dictionary&lt;AnyHashable, Any&gt;? {
+        var result : Dictionary&lt;AnyHashable, Any&gt;?
+        let fileNameComponents = plist.components(separatedBy: ".")
+        guard let filePath = Bundle.main.path(forResource: fileNameComponents.first ?? "", ofType: fileNameComponents.last ?? "") else {
+            return nil
+        }
+        
+        guard FileManager.default.fileExists(atPath: filePath) == true else {
+            return nil
+        }
+        
+        guard let data = FileManager.default.contents(atPath: filePath) else {
+            return nil
+        }
+        do {
+            guard let root = try PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? Dictionary&lt;AnyHashable, Any&gt; else {
+                return nil
+            }
+            result = root
+            
+        } catch {
+            print("Error: PropertyListSerialization error")
+        }
+        
+        return result
+        
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>44678DE8-A509-453B-881E-FEF5FC90C86C</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift 3: Plist services</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

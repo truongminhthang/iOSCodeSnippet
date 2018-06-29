@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>delayCallMethodAfter</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>func delayCallMethodAfter(_ time: TimeInterval) {
+        timer.invalidate()
+        timer = Timer.scheduledTimer(timeInterval: &lt;#time#&gt;, target: self, selector: #selector(&lt;#callBack#&gt;), userInfo: nil, repeats: false)
+    }
+    
+    func &lt;#callBack#&gt;() {
+        
+    }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>F4D12103-84A5-4506-BD66-9721BAC8CA8E</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift: Using timer to delay method</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>make request API</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>private func makeDataTaskRequest(request: URLRequest, completedBlock: @escaping (&lt;#Model#&gt;) -&gt; Void ) {
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            guard data != nil else { return }
+         
+            do {
+                let model = JSONDecoder().decode(&lt;#T##type: Decodable.Protocol##Decodable.Protocol#&gt;, from: data!)
+                DispatchQueue.main.async {
+                    completedBlock(model)
+                }
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+        task.resume()
+    }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>4C2B917E-1BE4-4B77-96D8-86BE41849DE0</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift 4: Make request API</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

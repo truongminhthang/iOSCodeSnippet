@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>// MARK: - UICollectionViewDelegateFlowLayout
+    let kMinInteritemSpacing  : CGFloat = 0
+    let kMinimumLineSpacing   : CGFloat = 0
+    let kEdgeInset                      = UIEdgeInsets(top: 4, left: 0, bottom: 0, right: 0)
+    var isPortrait            : Bool         = true
+    var numberOfItemInRow     : CGFloat  {
+        return isPortrait ? 4 : 5
+    }
+    
+    var _itemSize             : CGSize?
+    var itemSize              : CGSize  {
+        if _itemSize == nil {
+            
+            let width = UIScreen.main.bounds.width
+            let itemWidth = (width - kEdgeInset.left - kEdgeInset.right - (numberOfItemInRow - 1) * kMinInteritemSpacing ) / numberOfItemInRow
+            let itemHeight = itemWidth
+            _itemSize = CGSize(width: itemWidth, height: itemHeight)
+        }
+        return _itemSize!
+    }
+
+    
+    extension BaseCollectionMenuVC: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -&gt; UIEdgeInsets {
+        return kEdgeInset
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -&gt; CGSize {
+        return itemSize
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -&gt; CGFloat {
+        return kMinInteritemSpacing
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -&gt; CGFloat {
+        return kMinimumLineSpacing
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>4B4258D9-3FD9-4F44-B3AC-CF7344861D12</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift: CollectionView Delegate Flowlayout</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

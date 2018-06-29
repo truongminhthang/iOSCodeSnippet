@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>swift audio recorder </string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>
+class CreatingFlashCardTableVC: UITableViewController {
+    
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var recordButton: UIButton!
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var stopButton: UIButton!
+    
+    var audioPlayer: AVAudioPlayer?
+    var audioRecorder: AVAudioRecorder?
+    var soundFileUrl = AppDelegate.share.documentsDirectoryURL.appendingPathComponent("sound.mp3")
+    let audioSession = AVAudioSession.sharedInstance()
+    
+    var audioButtonState: AudioButtonState?{
+        didSet {
+            switch audioButtonState! {
+            case .origin:
+                playButton.isEnabled = false
+                stopButton.isEnabled = false
+                
+            case .play:
+                stopButton.isEnabled = true
+                recordButton.isEnabled = false
+                
+            case .record:
+                playButton.isEnabled = false
+                stopButton.isEnabled = true
+                
+            case .stop:
+                stopButton.isEnabled = false
+                playButton.isEnabled = true
+                recordButton.isEnabled = true
+            }
+        }
+    }
+
+    
+    let recordSettings =
+        [AVEncoderAudioQualityKey: AVAudioQuality.max.rawValue,
+         AVEncoderBitRateKey: 16,
+         AVNumberOfChannelsKey: 2,
+         AVSampleRateKey: 44100.0] as [String : Any]
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configAudioRecorder()
+        // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+}
+
+extension CreatingFlashCardTableVC {
+    
+    enum AudioButtonState: Int {
+        case origin
+        case play
+        case stop
+        case record
+    }
+    
+    func configAudioRecorder() {
+        audioButtonState = .origin
+        do {
+            try audioSession.setCategory(
+                AVAudioSessionCategoryPlayAndRecord)
+        } catch let error as NSError {
+            print("audioSession error: \(error.localizedDescription)")
+        }
+        
+        do {
+            try audioRecorder = AVAudioRecorder(url: soundFileUrl,
+                                                settings: recordSettings as [String : AnyObject])
+            audioRecorder?.prepareToRecord()
+        } catch let error as NSError {
+            print("audioSession error: \(error.localizedDescription)")
+        }
+    }
+    
+    
+    @IBAction func recordAudio(_ sender: AnyObject) {
+        if audioRecorder?.isRecording == false {
+            audioButtonState = .record
+            audioRecorder?.record()
+        }
+    }
+    
+    @IBAction func stopAudio(_ sender: AnyObject) {
+        audioButtonState = .stop
+        if audioRecorder?.isRecording == true {
+            audioRecorder?.stop()
+        } else {
+            audioPlayer?.stop()
+        }
+    }
+    
+    @IBAction func playAudio(_ sender: AnyObject) {
+        if audioRecorder?.isRecording == false {
+            audioButtonState = .play
+
+            do {
+                try audioPlayer = AVAudioPlayer(contentsOf:
+                    (audioRecorder?.url)!)
+                audioPlayer?.delegate = self
+                audioPlayer?.volume = 1
+                audioPlayer?.prepareToPlay()
+                audioPlayer?.play()
+            } catch let error as NSError {
+                print("audioPlayer error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+}
+
+// MARK: - AVAudioPlayerDelegate
+
+extension CreatingFlashCardTableVC: AVAudioPlayerDelegate {
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        audioButtonState = .stop
+
+    }
+    
+    func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
+        print("Audio Play Decode Error")
+    }
+}
+
+// MARK: - AVAudioPlayerDelegate
+
+extension CreatingFlashCardTableVC: AVAudioRecorderDelegate {
+    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+    }
+    
+    func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) {
+        print("Audio Record Encode Error")
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>4C0846DB-B9A0-461F-8869-D3F4789BCE81</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift 3: Audio Recorder </string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

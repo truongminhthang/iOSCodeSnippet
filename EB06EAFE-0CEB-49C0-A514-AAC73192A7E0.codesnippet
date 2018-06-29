@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>get free disk percent</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>class DeviceServices {
+    var freePercent: Double {
+        return self.diskFree / self.totalSize * 100
+    }
+    
+    var totalSize: Double  {
+        let totalSize: Double = 0
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        if let dictionary = try? FileManager.default.attributesOfFileSystem(forPath: paths.last!) {
+            if let freeSize = dictionary[FileAttributeKey.systemSize] as? NSNumber {
+                return freeSize.doubleValue
+            }
+        }   else{
+            print("Error Obtaining System Memory Info:")
+        }
+       return totalSize
+    }
+    var diskFree: Double {
+        let totaldisk:Double = 0
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        if let dictionary = try? FileManager.default.attributesOfFileSystem(forPath: paths.last!) {
+            if let freeSize = dictionary[FileAttributeKey.systemFreeSize] as? NSNumber {
+                return freeSize.doubleValue
+            }
+        }else{
+            print("Error Obtaining System Memory Info:")
+        }
+      return totaldisk
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>EB06EAFE-0CEB-49C0-A514-AAC73192A7E0</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>get free disk percent</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

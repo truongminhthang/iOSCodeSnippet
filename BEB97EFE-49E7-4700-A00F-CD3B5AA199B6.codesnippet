@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>
+    func request(urlString: String, callBack:@escaping([Dictionary&lt;String, AnyObject&gt;]) -&gt; Void) {
+        guard let url = URL(string: urlString) else {return}
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        let task = session.dataTask(with: url) { (data, response, error) in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            guard let httpResponse = response as? HTTPURLResponse else {
+                print("Error: HTTPResponse has no value")
+                return
+            }
+            
+            if httpResponse.statusCode == 200 {
+                guard let aData = data else {
+                    print("Error: did not receive data")
+                    return
+                }
+                do {
+                    let dictionaries = try JSONSerialization.jsonObject(with: aData, options: []) as? Dictionary&lt;String, AnyObject&gt;
+                    guard let aDictionaries = dictionaries?["results"] as? [Dictionary&lt;String, AnyObject&gt;] else {
+                        print("Error: trying to convert data to JSON")
+                        return
+                    }
+                    callBack(aDictionaries)
+                } catch let error {
+                    print(error)
+                }
+            }
+        }
+        task.resume()
+    }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>BEB97EFE-49E7-4700-A00F-CD3B5AA199B6</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift 3: Request url </string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

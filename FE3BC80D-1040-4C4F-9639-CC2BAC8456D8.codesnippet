@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>var token: dispatch_once_t = 0
+    func dispatchOnce() {
+        dispatch_once(&amp;&lt;#token#&gt;, &lt;#T##dispatch_block_t##dispatch_block_t##() -&gt; Void#&gt;)
+    }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>FE3BC80D-1040-4C4F-9639-CC2BAC8456D8</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>GCD-Swift: Dispatch_once</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

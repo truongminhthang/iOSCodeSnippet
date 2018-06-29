@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>display time using dateFormatter</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>if let create = tweet?.created {
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale(identifier: "VI")
+            if Date().timeIntervalSince(create) &gt; 24 * 60 * 60 {
+                dateFormatter.dateStyle = .short
+            } else {
+                dateFormatter.timeStyle = .short
+            }
+            tweetCreatedLabel?.text = dateFormatter.string(from: create)
+        }
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>E0F53576-6BBC-473F-91EF-5F7A2A5F80AC</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift 3: Display time using DateFormatter</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

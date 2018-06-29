@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>create a Model</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>import Foundation
+
+class &lt;#className#&gt;: NSObject, NSCoding {
+    var &lt;#propertyString#&gt;: String
+    var &lt;#propertyInt#&gt;: Int
+    var &lt;#imageData#&gt;: Data?
+    
+    static var DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("students")
+    
+    init(){
+    }
+    
+    struct PropertyKey {
+        static let &lt;#PropertyKeyName#&gt; = &lt;#PropertyKeyName#&gt;
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(&lt;#property#&gt;, forKey: PropertyKey.&lt;#key#&gt;)
+    }
+    
+    required convenience init?(coder aDecoder: NSCoder) {
+        let &lt;#Property#&gt; = aDecoder.decodeObject(forKey: PropertyKey.name) as! &lt;#Type#&gt;
+        self.init()
+    }
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>353BDFDF-EDE0-4B91-97FB-600353E63BA7</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift 3: create a Model implement NSCoding (encode, decode)</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

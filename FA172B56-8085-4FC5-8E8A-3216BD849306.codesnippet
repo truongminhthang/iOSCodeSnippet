@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>
+extension ViewController: NSFetchedResultsControllerDelegate {
+    
+    func controllerWillChangeContent(controller:
+        NSFetchedResultsController) {
+        tbv.beginUpdates()
+    }
+    
+    func controller(controller: NSFetchedResultsController,
+                    didChangeObject anObject: AnyObject,
+                                    atIndexPath indexPath: NSIndexPath?,
+                                                forChangeType type: NSFetchedResultsChangeType,
+                                                              newIndexPath: NSIndexPath?) {
+        
+        switch type {
+        case .Insert:
+            tbv.insertRowsAtIndexPaths([newIndexPath!],
+                                             withRowAnimation: .Automatic)
+        case .Delete:
+            tbv.deleteRowsAtIndexPaths([indexPath!],
+                                             withRowAnimation: .Automatic)
+        case .Update:
+            let cell = tbv.cellForRowAtIndexPath(indexPath!)
+            configureCell(cell!, indexPath: indexPath!)
+        case .Move:
+            tbv.deleteRowsAtIndexPaths([indexPath!],
+                                             withRowAnimation: .Automatic)
+            tbv.insertRowsAtIndexPaths([newIndexPath!],
+                                             withRowAnimation: .Automatic)
+        }
+    }
+    
+    func controllerDidChangeContent(controller:
+        NSFetchedResultsController) {
+        tbv.endUpdates()
+    }
+    
+    func controller(controller: NSFetchedResultsController,
+                    didChangeSection sectionInfo: NSFetchedResultsSectionInfo,
+                                     atIndex sectionIndex: Int,
+                                             forChangeType type: NSFetchedResultsChangeType) {
+        
+        let indexSet = NSIndexSet(index: sectionIndex)
+        
+        switch type {
+        case .Insert:
+            tbv.insertSections(indexSet,
+                                     withRowAnimation: .Automatic)
+        case .Delete:
+            tbv.deleteSections(indexSet,
+                                     withRowAnimation: .Automatic)
+        default :
+            break
+        }
+    }
+    
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>FA172B56-8085-4FC5-8E8A-3216BD849306</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift: CoreData / NSFetchedResultsControllerDelegate</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

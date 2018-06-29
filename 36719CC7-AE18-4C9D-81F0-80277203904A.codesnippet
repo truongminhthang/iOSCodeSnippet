@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>restoration viewcontroller</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>// Chú ý: Mọi Restore Identifier ở Storyboard cần được định nghĩa để có thể sử dụng được tính năng này
+
+extension ViewController2: UIViewControllerRestoration {
+    static func viewController(withRestorationIdentifierPath identifierComponents: [Any], coder: NSCoder) -&gt; UIViewController? {
+        let vc = ViewController2()
+        return vc
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>36719CC7-AE18-4C9D-81F0-80277203904A</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift 3: restoration viewcontroller</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

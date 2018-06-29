@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>func * (left: CGSize, right: CGFloat) -&gt; CGSize {
+    return CGSize (width: left.width * right , height: left.height * right)
+}
+
+func + (left: CGSize, right: CGFloat) -&gt; CGSize {
+    return CGSize (width: left.width + right , height: left.height + right)
+}
+
+func - (left: CGSize, right: CGFloat) -&gt; CGSize {
+    return CGSize (width: left.width - right , height: left.height - right)
+}
+
+func / (left: CGSize, right: CGFloat) -&gt; CGSize {
+    return CGSize (width: left.width / right , height: left.height / right)
+}
+
+func + (left: CGSize, right: CGSize) -&gt; CGSize {
+    return CGSize (width: left.width + right.width , height: left.height + right.height)
+}
+
+func - (left: CGSize, right: CGSize) -&gt; CGSize {
+    return CGSize (width: left.width - right.width , height: left.height - right.height)
+}
+
+func * (left: CGSize, right: CGSize) -&gt; CGSize {
+    return CGSize (width: left.width * right.width , height: left.height * right.height)
+}
+
+func / (left: CGSize, right: CGSize) -&gt; CGSize {
+    return CGSize (width: left.width / right.width , height: left.height / right.height)
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>3C7454F4-6E45-4DC0-A64C-F8583434ECBA</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift: Operator with CGSize</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

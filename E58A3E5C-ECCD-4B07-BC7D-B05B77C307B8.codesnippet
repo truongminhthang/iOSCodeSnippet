@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>getInstanceFileXib</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>  static var instanceFromNib : &lt;#className#&gt; {
+        let uiNib = UINib(nibName: "&lt;#FileXibName#&gt;", bundle: nil)
+        return uiNib.instantiate(withOwner: nil, options: nil)[0] as! &lt;#className#&gt;
+    }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>E58A3E5C-ECCD-4B07-BC7D-B05B77C307B8</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>create by Chung</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Instance From Nib</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

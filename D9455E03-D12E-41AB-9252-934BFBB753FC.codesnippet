@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>keyboard didShow</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>func registerNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardAppeared), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    func keyboardAppeared(_ notification: Notification) {
+        guard let &lt;#object#&gt; = notification.userInfo?[&lt;#keyValue#&gt;] else {return}
+    }
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>D9455E03-D12E-41AB-9252-934BFBB753FC</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift 3: register observer Keyboard did Show</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

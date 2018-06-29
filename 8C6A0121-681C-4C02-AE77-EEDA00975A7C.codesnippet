@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>subStringEx</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>// SWIFT 3
+let smth = "element=value"
+if let index = (smth.range(of: "=")?.upperBound) {
+    let afterEqualsTo = smth.substring(from: index) //prints "value"
+    let beforeEqualsToContainingSymbol = smth.substring(to: index) //prints "element="
+}
+
+if let index = (smth.range(of: "=")?.lowerBound) {
+    let afterEqualsToContainingSymbol = smth.substring(from: index) //prints "=value"
+    let beforeEqualsTo = smth.substring(to: index) //prints "element"
+}
+// Bound Swift 3
+let string = "https://headlines.yahoo.co.jp/article?a=20171115-00010003-kaiyou-ent"
+if let index = string.range(of: "//")?.upperBound {
+    let firstPart = string.substring(from: index)
+    if let index = firstPart.range(of: "/")?.lowerBound  {
+        let secondPart = firstPart.substring(to: index) // print "headlines.yahoo.co.jp"
+    }
+}
+
+
+//// SWIFT 4
+//let smth = "element=value"
+//if let index = (smth.range(of: "=")?.upperBound) {
+//    let afterEqualsTo = String(smth.suffix(from: index)) //prints "value"
+//    let beforeEqualsToContainingSymbol = String(smth.prefix(upTo: index)) //prints "element="
+//}
+//
+//if let index = (smth.range(of: "=")?.lowerBound) {
+//    let afterEqualsToContainingSymbol = String(smth.suffix(from: index)) //prints "=value"
+//    let beforeEqualsTo = String(smth.prefix(upTo: index)) //prints "element"
+//}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>8C6A0121-681C-4C02-AE77-EEDA00975A7C</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift 3,4- SubString </string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

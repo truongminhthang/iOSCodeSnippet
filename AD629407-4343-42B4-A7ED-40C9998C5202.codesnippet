@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>
+enum SearchPlaceState: Int {
+    case full
+    case middle
+    case low
+}
+
+class SearchPlaceVC: UIViewController {
+    
+    @IBOutlet weak var topEdgeConstraint: NSLayoutConstraint!
+    @IBOutlet weak var searchHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    var state: SearchPlaceState = .middle {
+        didSet {
+            switch state {
+            case .full:
+                topConstant = fullScreenTopConstant
+            case .middle:
+                topConstant = middleTopConstant
+                view.endEditing(true)
+            case .low:
+                topConstant = bottomSheetTopConstant
+                view.endEditing(true)
+            }
+        }
+    }
+    var cellHeight                  : CGFloat = 44
+    var fullScreenTopConstant       : CGFloat = 80
+    var bottomSheetTopConstant      : CGFloat!
+    var minVelocity                 : CGFloat = 200
+    var isPanGestureChanging        : Bool = false
+    var statusBarHeight             : CGFloat = 20
+    var searchPlaceServices        = SearchPlaceServices()
+    var displayedPlaces              : [PlaceModel] = []
+    
+    var timer: Timer?
+    var middleTopConstant: CGFloat! {
+        return (fullScreenTopConstant + bottomSheetTopConstant) * 0.5
+    }
+    var mapContainerVC: MapContainerVC? {
+        return parent as? MapContainerVC
+    }
+    var mapView: GMSMapView? {
+        return mapContainerVC?.mapVC?.mapView
+    }
+    var topConstant: CGFloat! {
+        get {
+            return mapContainerVC?.topBottomSheetConstant
+        }
+        set {
+            mapContainerVC?.topBottomSheetConstant = newValue
+            UIView.animate(withDuration: 0.15, delay: 0.0, options: [.allowUserInteraction, .curveEaseInOut], animations: {
+                self.parent?.view.layoutIfNeeded()
+            }, completion: { (isSuccess) in
+                self.isPanGestureChanging = false
+                self.tableView.allowsSelection = true
+            })
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupOriginValue()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        topConstant = middleTopConstant
+    }
+    
+    func setupOriginValue() {
+        bottomSheetTopConstant = view.frame.height - statusBarHeight - searchHeightConstraint.constant - topEdgeConstraint.constant - cellHeight
+        
+        searchBar.delegate = self
+        searchPlaceServices.delegate = self
+        displayedPlaces = searchPlaceServices.filerHistory(withText: "")
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier ?? "" {
+        case SegueIdentifier.showSelectVehicle:
+            let selectVehicleVC = segue.destination as! SelectVehicleVC
+            selectVehicleVC.searchPlaceVC = self
+        default:
+            return
+        }
+    }
+}
+// MARK: - SearchPlaceVC handle PanGesture
+
+extension SearchPlaceVC {
+    
+    @IBAction func handlePanGesture(_ sender: UIPanGestureRecognizer) {
+        let deltaY = sender.translation(in: view)
+        let velocity = sender.velocity(in: view)
+        if fabs(velocity.y) &gt; 100 {
+            self.view.endEditing(true)
+        }
+        guard topConstant != nil else {   return }
+        let newTopConstant = topConstant + deltaY.y
+        if newTopConstant &gt; fullScreenTopConstant &amp;&amp; newTopConstant &lt; bottomSheetTopConstant {
+            topConstant = newTopConstant
+            sender.setTranslation(CGPoint.zero, in: view)
+            tableView.allowsSelection = false
+        }
+        
+        if sender.state == .ended {
+            guard isPanGestureChanging == false else {
+                return
+            }
+            isPanGestureChanging = true
+            setTopConstraint(velocityY: velocity.y)
+        }
+    }
+    
+    func setTopConstraint(velocityY: CGFloat) {
+        switch topConstant {
+        case fullScreenTopConstant ..&lt; (fullScreenTopConstant + middleTopConstant) * 0.5:
+            state = velocityY &gt; minVelocity ? .middle : .full
+        case (fullScreenTopConstant + middleTopConstant) * 0.5 ..&lt; middleTopConstant:
+            state = velocityY &lt; -minVelocity ? .full : .middle
+        case middleTopConstant ..&lt; (middleTopConstant + bottomSheetTopConstant) * 0.5 :
+            state = velocityY &gt; minVelocity ? .low : .middle
+        case (middleTopConstant + bottomSheetTopConstant) * 0.5 ..&lt; bottomSheetTopConstant:
+            state = velocityY &lt; -minVelocity ? .middle : .low
+        default:
+            return
+        }
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>AD629407-4343-42B4-A7ED-40C9998C5202</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift 3: create bottom popup like Apple Map (handle PanGesture)</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

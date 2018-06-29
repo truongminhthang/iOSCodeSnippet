@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>extension NSIndexSet {
+    func getIndexPathsFromIndexesWithSection(section: Int) -&gt; [NSIndexPath] {
+        var indexPaths: [NSIndexPath] = []
+        for (index, _) in self.enumerate() {
+            indexPaths += [NSIndexPath(forItem: index, inSection: section)]
+        }
+        return indexPaths
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>BFF964C2-C845-4DD9-85FA-C02D704EB4EC</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>swift: get indexPaths from NSIndexSet</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

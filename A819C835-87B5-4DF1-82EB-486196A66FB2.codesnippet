@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>@implementation UICollectionView (Convenience)
+
+- (NSArray *)aapl_indexPathsForElementsInRect:(CGRect)rect {
+    NSArray *allLayoutAttributes = [self.collectionViewLayout layoutAttributesForElementsInRect:rect];
+    if (allLayoutAttributes.count == 0) { return nil; }
+    NSMutableArray *indexPaths = [NSMutableArray arrayWithCapacity:allLayoutAttributes.count];
+    for (UICollectionViewLayoutAttributes *layoutAttributes in allLayoutAttributes) {
+        NSIndexPath *indexPath = layoutAttributes.indexPath;
+        [indexPaths addObject:indexPath];
+    }
+    return indexPaths;
+}
+
+@end</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>A819C835-87B5-4DF1-82EB-486196A66FB2</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>obj-C: get indexPath for elements in rect </string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

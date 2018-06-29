@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>Route get url variable</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>routes.add(method: .get, uri: "/beer/{num_beers}") { (request, response) in
+    guard let numberString = request.urlVariables["num_beers"], let numberBeer = Int(numberString) else {
+        response.setBody(string: "Bad Request").completed(status: .badRequest)
+        return
+    }
+    do {
+        try response.setBody(json: ["message": "number of bear \(numberBeer)"])
+            .setHeader(.contentType, value: "application/json").completed()
+    } catch {
+        response.setBody(string: "Error").completed(status: .internalServerError)
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>ED119DA8-3037-4896-B951-83EDBB5553A4</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>[Perfect] Route to Get urlVariable</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

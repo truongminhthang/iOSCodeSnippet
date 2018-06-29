@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>Entity helper</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>class func searchRequest(placeID: String) -&gt; NSFetchRequest&lt;PlaceEntity&gt; {
+        let fetch = NSFetchRequest&lt;PlaceEntity&gt;(entityName: "PlaceEntity");
+        fetch.predicate = NSPredicate(format: "placeID == %@",placeID)
+        return fetch
+    }
+    
+    static func makeInstance() -&gt; PlaceEntity {
+        if #available(iOS 10.0, *) {
+            return PlaceEntity(context: AppDelegate.share.context)
+        } else {
+            return NSEntityDescription.insertNewObject(forEntityName: "PlaceEntity", into: AppDelegate.share.context) as! PlaceEntity
+        }
+    }
+    
+    static func getall() -&gt; [PlaceEntity]? {
+        let request: NSFetchRequest&lt;PlaceEntity&gt; = PlaceEntity.fetchRequest()
+        return try? AppDelegate.share.context.fetch(request)
+    }
+    
+    static func search(by placeID: String) -&gt; PlaceEntity? {
+        let searchRequest: NSFetchRequest&lt;PlaceEntity&gt; = PlaceEntity.searchRequest(placeID: placeID)
+        return (try? AppDelegate.share.context.fetch(searchRequest))?.first
+    }
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>5544D84A-E428-4EAD-AEFD-9B18A876A2EE</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift 3: Entity Helper</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

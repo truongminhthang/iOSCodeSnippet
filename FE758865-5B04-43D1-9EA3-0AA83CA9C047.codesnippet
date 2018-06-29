@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>hybird property</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>private var _&lt;#property#&gt;: [String]?
+    
+    var &lt;#property#&gt;: [String] {
+        set {
+            _&lt;#property#&gt; = newValue
+        }
+        get {
+            if _&lt;#property#&gt; == nil {
+                update&lt;#Property#&gt;()
+            }
+            return _&lt;#property#&gt; ?? []
+        }
+    }
+    
+    func update&lt;#property#&gt;() {
+        _&lt;#property#&gt; = []
+        NotificationCenter.default.post(name: &lt;#T##NSNotification.Name#&gt;, object: &lt;#T##Any?#&gt;)
+    }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>FE758865-5B04-43D1-9EA3-0AA83CA9C047</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift 3: Hybird Property</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

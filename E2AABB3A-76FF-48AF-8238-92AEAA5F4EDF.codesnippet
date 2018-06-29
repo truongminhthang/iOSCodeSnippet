@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>saveloadfromuserdefaults</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>
+extension Double {
+    func saveToUserDefaults(withKey key: String) {
+        let defaults = UserDefaults.standard
+        defaults.set(self, forKey: key)
+        defaults.synchronize()
+    }
+    static func loadFromUserDefaults(withKey key: String) -&gt; Double {
+        let defaults = UserDefaults.standard
+        return defaults.double(forKey:key)
+    }
+}
+
+extension Float {
+    func saveToUserDefaults(withKey key: String) {
+        let defaults = UserDefaults.standard
+        defaults.set(self, forKey: key)
+        defaults.synchronize()
+    }
+    static func loadFromUserDefaults(withKey key: String) -&gt; Float {
+        let defaults = UserDefaults.standard
+        return defaults.float(forKey: key)
+    }
+}
+
+extension Bool {
+    func saveToUserDefaults(withKey key: String) {
+        let defaults = UserDefaults.standard
+        defaults.set(self, forKey: key)
+        defaults.synchronize()
+    }
+    static func loadFromUserDefaults(withKey key: String) -&gt; Bool {
+        let defaults = UserDefaults.standard
+        return defaults.bool(forKey: key)
+    }
+}
+
+extension String {
+    func saveToUserDefaults(withKey key: String) {
+        let defaults = UserDefaults.standard
+        if String.loadFromUserDefaults(withKey: key) != "" {
+            defaults.set(nil, forKey: key)
+        }
+        defaults.set(self, forKey: key)
+        defaults.synchronize()
+    }
+    static func loadFromUserDefaults(withKey key: String) -&gt; String {
+        let defaults = UserDefaults.standard
+        return defaults.string(forKey: key) ?? ""
+    }
+    
+}
+
+extension URL {
+    func saveToUserDefaults(withKey key: String) {
+        let defaults = UserDefaults.standard
+        defaults.set(self, forKey: key)
+        defaults.synchronize()
+    }
+    static func loadFromUserDefaults(withKey key: String) -&gt; URL? {
+        let defaults = UserDefaults.standard
+        return defaults.url(forKey: key)
+    }
+    
+}
+
+extension NSData {
+    func saveToUserDefaults(withKey key: String) {
+        let defaults = UserDefaults.standard
+        defaults.set(self, forKey: key)
+        defaults.synchronize()
+    }
+    static func loadFromUserDefaults(withKey key: String) -&gt; Data? {
+        let defaults = UserDefaults.standard
+        return defaults.data(forKey: key)
+    }
+}
+
+extension Int {
+    func saveToUserDefaults(withKey key: String) {
+        let defaults = UserDefaults.standard
+        defaults.set(self, forKey: key)
+        defaults.synchronize()
+    }
+    static func loadFromUserDefaults(withKey key: String) -&gt; Int {
+        let defaults = UserDefaults.standard
+        return defaults.integer(forKey: key)
+    }
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>E2AABB3A-76FF-48AF-8238-92AEAA5F4EDF</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift 3: Save and Load from UserDefaults</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

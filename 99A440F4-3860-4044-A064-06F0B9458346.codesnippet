@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>file size</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>extension URL {
+    var fileSize: Int? {
+        let keys: Set&lt;URLResourceKey&gt; = [.totalFileSizeKey, .fileSizeKey]
+        let resourceValues = try? self.resourceValues(forKeys: keys)
+        return resourceValues?.fileSize ?? resourceValues?.totalFileSize
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>99A440F4-3860-4044-A064-06F0B9458346</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>get File Size from URL</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>scheduleNotification</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>   private func requestPermission() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.badge,.sound]) { (granted, error) in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            
+            if granted {
+                print("Notification access granted")
+            }
+            
+        }
+    }
+    
+    private func scheduleNotification(inSeconds: TimeInterval, completion: @escaping (Bool) -&gt; ()) {
+        let notification = UNMutableNotificationContent()
+        notification.title = "New Notification"
+        notification.subtitle = "These are great!"
+        notification.body = "The new notification options in ios10"
+        
+        let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: inSeconds, repeats: false)
+        let request = UNNotificationRequest(identifier: "myNotification", content: notification, trigger: notificationTrigger)
+        
+        UNUserNotificationCenter.current().add(request) { (error) in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            completion(true)
+        }
+    }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>D3FFCC68-732E-4752-9813-323BB14F0627</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>scheduleNotification</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

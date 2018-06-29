@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>Lock rotate swift 2.3</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>
+import UIKit
+
+class BaseViewController: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        let orientation = UIInterfaceOrientationMask.Portrait.rawValue
+        UIDevice.currentDevice().setValue(orientation, forKey: "orientation")
+    }
+    
+    override func shouldAutorotate() -&gt; Bool {
+        return true
+    }
+    
+    override func supportedInterfaceOrientations() -&gt; UIInterfaceOrientationMask {
+        return .Portrait
+    }
+    
+    override func preferredInterfaceOrientationForPresentation() -&gt; UIInterfaceOrientation {
+        return .Portrait
+    }
+}
+
+extension UINavigationController {
+   
+    override public func supportedInterfaceOrientations() -&gt; UIInterfaceOrientationMask {
+        return (visibleViewController?.supportedInterfaceOrientations()) ?? .All
+    }
+    
+    override public func shouldAutorotate() -&gt; Bool {
+        return (visibleViewController?.shouldAutorotate()) ?? false
+    }
+    
+    override public func preferredInterfaceOrientationForPresentation () -&gt; UIInterfaceOrientation {
+        return (visibleViewController?.preferredInterfaceOrientationForPresentation()) ?? .Portrait
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>0D6D151E-400B-4DD5-8D59-A9455FA7027F</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift 2.3: Lock rotate</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

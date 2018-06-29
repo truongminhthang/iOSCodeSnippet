@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>request</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>func request(urlString: String, callBack:(dict: Dictionary&lt;String, AnyObject&gt;) -&gt; ()) {
+       
+        guard let url = NSURL(string: urlString) else {return }
+        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let session = NSURLSession(configuration: config)
+        let task = session.dataTaskWithURL(url)  { (data, response, error) in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            guard let httpResponse = response as? NSHTTPURLResponse else {
+                print("Error: HTTPResponse has no value")
+                return
+            }
+            if httpResponse.statusCode == 200 {
+                guard let aData = data else {
+                    print("Error: did not receive data")
+                    return
+                }
+                do {
+                    guard let dict = try NSJSONSerialization.JSONObjectWithData(aData, options: []) as? Dictionary&lt;String, AnyObject&gt; else {
+                        print("error trying to convert data to JSON")
+                        return
+                    }
+                    callBack(dict: dict)
+                } catch let error {
+                    print(error)
+                }
+            }
+        }
+        task.resume()
+    }
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>DAC555E6-1C6E-4E5D-A02F-10244B1E05BA</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift 3: Request RESTJson</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

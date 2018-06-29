@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>vietnamcurrencystring from number</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>func currencyStringFrom(number: Double) -&gt; String {
+        let currencyFormatter = NSNumberFormatter()
+        currencyFormatter.numberStyle = NSNumberFormatterStyle.CurrencyISOCodeStyle
+        currencyFormatter.locale = NSLocale(localeIdentifier: "FR")
+        currencyFormatter.currencyCode = "VND"
+        currencyFormatter.currencyGroupingSeparator = "."
+        return currencyFormatter.stringFromNumber(number) ?? ""
+    }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>BFE6D605-D12C-430F-926F-59778B5FF8B5</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Đoạn code thực hiện việc chuyển đổi từ số double sang đơn vị tiền tệ</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>swift 2: get Vietnamese CurrencyString from number</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

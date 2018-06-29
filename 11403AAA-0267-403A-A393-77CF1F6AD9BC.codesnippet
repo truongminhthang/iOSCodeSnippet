@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>func configImageAlignedCenterButton(button: UIButton) {
+        guard button.imageView != nil else {
+            return
+        }
+        let spacing: CGFloat = 6.0
+        let imageSize: CGSize = button.imageView!.image!.size
+        button.titleEdgeInsets = UIEdgeInsetsMake(0.0, -imageSize.width, -(imageSize.height + spacing), 0.0)
+        let labelString = NSString(string: button.titleLabel!.text!)
+        let titleSize = labelString.size(attributes: [NSFontAttributeName: button.titleLabel!.font])
+        button.imageEdgeInsets = UIEdgeInsetsMake(-(titleSize.height + spacing), 0.0, 0.0, -titleSize.width)
+        let edgeOffset = abs(titleSize.height - imageSize.height) / 2.0;
+        button.contentEdgeInsets = UIEdgeInsetsMake(edgeOffset, 0.0, edgeOffset, 0.0)
+    }
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>11403AAA-0267-403A-A393-77CF1F6AD9BC</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>create a button with image in center, and attributed title on bottom of Button. </string>
+	<key>IDECodeSnippetTitle</key>
+	<string>swift 3: Align center image in Button </string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
