@@ -6,7 +6,7 @@
 	<string>global queue</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
-		<string>CodeExpression</string>
+		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>DispatchQueue.global(qos: .userInitiated).async {

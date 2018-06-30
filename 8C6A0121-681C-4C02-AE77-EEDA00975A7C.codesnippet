@@ -48,6 +48,8 @@ if let index = string.range(of: "//")?.upperBound {
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetPlatformFamily</key>
 	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>create by Chung</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift 3,4- SubString </string>
 	<key>IDECodeSnippetUserSnippet</key>

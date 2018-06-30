@@ -30,6 +30,8 @@
 	<string>72C12DBC-9058-401A-91BD-DC4C8E3E3137</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>create by Chung</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift - Save to CameraRoll and get assetURL</string>
 	<key>IDECodeSnippetUserSnippet</key>

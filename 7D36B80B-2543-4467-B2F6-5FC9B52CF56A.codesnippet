@@ -25,6 +25,8 @@ extension DispatchQueue {
 	<string>7D36B80B-2543-4467-B2F6-5FC9B52CF56A</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>create by Chung</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift - GlobalQueue</string>
 	<key>IDECodeSnippetUserSnippet</key>

@@ -32,7 +32,9 @@
 	<key>IDECodeSnippetIdentifier</key>
 	<string>1CD8EAB1-DE49-4708-9EE9-39926851B277</string>
 	<key>IDECodeSnippetLanguage</key>
-	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>create by Chung</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Save video to cameraroll</string>
 	<key>IDECodeSnippetUserSnippet</key>

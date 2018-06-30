@@ -50,6 +50,8 @@ class DeviceUtils {
 	<string>342C9625-07C8-4054-BBAC-CC7EC4CF21A5</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>create by Chung</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift - DeviceUtils</string>
 	<key>IDECodeSnippetUserSnippet</key>

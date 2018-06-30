@@ -89,6 +89,8 @@ class PieChartView: UIView {
 	<string>2BE80D75-7705-4728-B080-C755F7F25BD8</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Create by Chung</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift - PieChart</string>
 	<key>IDECodeSnippetUserSnippet</key>

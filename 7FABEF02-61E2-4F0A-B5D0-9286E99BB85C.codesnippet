@@ -7,15 +7,7 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>//
-//  GoogleAdsMob.swift
-//  Cleaner
-//
-//  Created by ChungTran on 10/18/17.
-//  Copyright © 2017 BaBaBiBo. All rights reserved.
-//
-
-import UIKit
+	<string>import UIKit
 import GoogleMobileAds
 
 
@@ -121,7 +113,7 @@ extension GoogleAdMob: GADBannerViewDelegate {
 	<key>IDECodeSnippetIdentifier</key>
 	<string>7FABEF02-61E2-4F0A-B5D0-9286E99BB85C</string>
 	<key>IDECodeSnippetLanguage</key>
-	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Google Ads </string>
 	<key>IDECodeSnippetUserSnippet</key>
