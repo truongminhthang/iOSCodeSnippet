@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>pushfromtop</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>extension UIViewController{
+    
+    func pushFromBottom(to controller: UIViewController) {
+        guard let navController = navigationController else {return}
+        let transition:CATransition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromBottom
+        navController.view.layer.add(transition, forKey: kCATransition)
+        let backButton = UIBarButtonItem(title: "Back", style: .plain, target: controller, action: #selector(controller.popFromTop))
+        controller.navigationItem.rightBarButtonItem = backButton
+        controller.navigationItem.setHidesBackButton(true, animated: true)
+        navController.pushViewController(controller, animated: false)
+    }
+    
+    @objc func popFromTop() {
+        guard let navController = navigationController else {return}
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromTop
+        navController.view.layer.add(transition, forKey: nil)
+        navController.popViewController(animated: false)
+    }
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>23F06EA8-608F-4E48-80B7-2B7A92606D8B</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>create by Chung</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Push from bottom and pop from top</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
