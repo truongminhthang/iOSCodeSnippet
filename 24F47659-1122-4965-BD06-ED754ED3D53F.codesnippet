@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>fillterPlace</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>// import GooglePlaces
+
+var placesClient: GMSPlacesClient!
+// init placesClient = GMSPlacesClient() in viewDidLoad()
+
+func placeAutocomplete() {
+    let filter = GMSAutocompleteFilter()
+    filter.type = .establishment
+    placesClient.autocompleteQuery("&lt;#NamePlace#&gt;", bounds: nil, filter: filter, callback: {(results, error) -&gt; Void in
+        if let error = error {
+            print("Autocomplete error \(error)")
+            return
+        }
+        if let results = results {
+            if let placeID = results.first?.placeID {
+                self.placesClient.lookUpPlaceID(placeID, callback: { (place, error) -&gt; Void in
+                    if let error = error {
+                        print("lookup place id query error: \(error.localizedDescription)")
+                        return
+                    }
+                    
+                    guard let place = place else {
+                        print("No place details for \(placeID)")
+                        return
+                    }
+                    
+                    print("Place name \(place.name)")
+                    print("Place address \(place.coordinate)")
+                })
+            }
+        }
+    })
+    }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>24F47659-1122-4965-BD06-ED754ED3D53F</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>created by Chung</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>GoogleMaps - Filter place</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
