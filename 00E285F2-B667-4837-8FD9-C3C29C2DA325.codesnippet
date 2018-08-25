@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>extentionString</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>extension String {
+    
+    var localized: String {
+        var currentLocale = "Base"
+        if let locate = UserDefaults.standard.object(forKey: "locate") as? String {
+            currentLocale = locate
+        }
+        guard
+            let bundlePath = Bundle.main.path(forResource: currentLocale, ofType: "lproj"),
+            let bundle = Bundle(path: bundlePath) else {
+                return self
+        }
+        return NSLocalizedString(self, tableName: nil, bundle: bundle, value: "", comment: "")
+    }
+    
+    static func className(_ aClass: AnyClass) -&gt; String {
+        return NSStringFromClass(aClass).components(separatedBy: ".").last!
+    }
+    
+    func capitalizingFirstLetter() -&gt; String {
+        return prefix(1).uppercased() + dropFirst()
+    }
+    
+    mutating func capitalizeFirstLetter() {
+        self = self.capitalizingFirstLetter()
+    }
+    
+    func isYoutubeLink() -&gt; Bool {
+        return contains("www.youtube.com")
+    }
+    
+    func isValidEmail() -&gt; Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: self)
+    }
+    
+    var isPhoneNumber: Bool {
+        let character  = NSCharacterSet(charactersIn: "+0123456789").inverted
+        let inputString = components(separatedBy: character)
+        let filtered = inputString.joined(separator: "")
+        return self == filtered
+    }
+    
+    
+    var dType: String {
+        let price = self
+        let priceNumber = price.split(separator: " ").first
+        let priceStringWithD = "\(priceNumber ?? "")đ"
+        return priceStringWithD
+    }
+    
+    func subString(with param: String) -&gt; (first: String, last: String) {
+        var afterEqualsTo = ""
+        var beforeEqualsToContainingSymbol = ""
+        if let index = (self.range(of: param)?.upperBound) {
+            afterEqualsTo = String(self.suffix(from: index)) //prints "value"
+            beforeEqualsToContainingSymbol = String(self.prefix(upTo: index)) //prints "element="
+        }
+        return (first: beforeEqualsToContainingSymbol, last: afterEqualsTo)
+    }
+    func widthOfString(usingFont font: UIFont) -&gt; CGFloat {
+        let fontAttributes: [NSAttributedStringKey : Any] = [kCTFontAttributeName as NSAttributedStringKey: font]
+        let size = self.size(withAttributes: fontAttributes)
+        return size.width
+    }
+    
+    func localizable() -&gt; String {
+        return NSLocalizedString(self, comment: "no-comment")
+    }
+    
+    
+    func heightOfString(usingFont font: UIFont) -&gt; CGFloat {
+        let fontAttributes: [NSAttributedStringKey : Any] = [kCTFontAttributeName as NSAttributedStringKey: font]
+        let size = self.size(withAttributes: fontAttributes)
+        return size.height
+    }
+    var html2AttributedString: NSAttributedString? {
+        
+        guard let data = data(using: .utf8) else { return nil }
+        do {
+            let attributedString = try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
+            //            print(attributedString)
+            return attributedString
+        } catch let error as NSError {
+            print(error.localizedDescription)
+            return  nil
+        }
+    }
+    
+    var html2String: String {
+        return html2AttributedString?.string ?? ""
+    }
+    var removeLastBreakLine: String {
+        var text = self
+        if text.last == "\n" {
+            text = String(text.dropLast())
+        }
+        return text
+    }
+}
+extension NSMutableAttributedString {
+    func setColorForText(_ textToFind: String?, with color: UIColor) {
+        
+        let range:NSRange?
+        if let text = textToFind{
+            range = self.mutableString.range(of: text, options: .caseInsensitive)
+        }else{
+            range = NSMakeRange(0, self.length)
+        }
+        if range!.location != NSNotFound {
+            addAttribute(NSAttributedStringKey.foregroundColor, value: color, range: range!)
+        }
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>00E285F2-B667-4837-8FD9-C3C29C2DA325</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>create by Chung</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift - Extentions String</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>

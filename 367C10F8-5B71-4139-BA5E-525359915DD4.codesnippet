@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>extentionsUITextField</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>extension UITextField {
+    
+    open override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        if text != nil {
+            text = text!.localizable()
+        }
+        if placeholder != nil {
+            placeholder = placeholder!.localizable()
+            if font != nil {
+                attributedPlaceholder = NSAttributedString(string: placeholder!,
+                                                           attributes:[.font: font!])
+            }
+        }
+    }
+    
+    /// Set place holder color
+    @IBInspectable var placeHolderColor: UIColor? {
+        get {return self.placeHolderColor}
+        set {
+            attributedPlaceholder = NSAttributedString(string: placeholder != nil ? self.placeholder! : "",
+                                                            attributes:[NSAttributedStringKey.foregroundColor: newValue!])
+        }
+    }
+    
+    /// Add image to left view
+    ///
+    /// - Parameter img: image input
+    func addLeft(img: UIImage) {
+        let subView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 24))
+        let imgView = UIImageView(frame: CGRect(x: 15, y: 0, width: 20, height: 20))
+        imgView.image = img
+        imgView.contentMode = .scaleAspectFit
+        subView.addSubview(imgView)
+        leftView = subView
+        leftViewMode = .always
+    }
+    
+    
+    /// Add image to right view with action
+    ///
+    /// - Parameter img: image input
+    func addRight(img: UIImage) {
+        let size = CGSize(width: frame.height - 5, height: frame.height - 5)
+        let subView = UIView(frame: CGRect(origin: .zero, size: size))
+        let btn = UIButton(frame: CGRect(origin: .zero, size: size))
+        btn.setImage(img, for: .normal)
+        btn.addTarget(self, action: #selector(didSelectedRightView), for: .touchUpInside)
+        subView.addSubview(btn)
+        rightView = subView
+        rightViewMode = text != "" ? .always : .never
+    }
+    
+    @objc func didSelectedRightView(_ sender: UIView) {
+        rightViewMode = .never
+        text = ""
+        sendActions(for: .editingChanged)
+    }
+    
+    /// Add image to right view
+    ///
+    /// - Parameter img: image input
+    func addSucessView(img: UIImage) {
+        let subView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 24))
+        let imgView = UIImageView(frame: CGRect(x: 15, y: 0, width: 20, height: 20))
+        imgView.image = img
+        imgView.contentMode = .scaleAspectFit
+        subView.addSubview(imgView)
+        rightView = subView
+        rightViewMode = .always
+    }
+    
+    func hiddenSuccessView() {
+        rightView = nil
+        rightViewMode = .never
+    }
+    
+    /// Show message by image
+    ///
+    /// - Parameter img: image input
+    func message(img: UIImage) {
+        let imgView = UIImageView(frame: CGRect(x: 20, y: -40, width: 230, height: 46))
+        imgView.image = img
+        imgView.contentMode = .scaleAspectFit
+        layer.masksToBounds = false
+        layer.setValue(imgView, forKey: "message")
+        addSubview(imgView)
+    }
+    
+    /// Remove the image message
+    func hiddenMessage() {
+//        subviews.filter{$0 is UIImageView}.forEach{$0.removeFromSuperview()}
+        if let imgView = layer.value(forKey: "message") as? UIImageView {
+            imgView.removeFromSuperview()
+            layer.setValue(nil, forKey: "message")
+        }
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>367C10F8-5B71-4139-BA5E-525359915DD4</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>create by Chung</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift - Extentions UITextField</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>

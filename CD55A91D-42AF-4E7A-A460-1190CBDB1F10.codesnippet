@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>extentionsUIColor</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>extension UIColor {
+    
+    convenience init(red: Int, green: Int, blue: Int) {
+        assert(red &gt;= 0 &amp;&amp; red &lt;= 255, "Invalid red component")
+        assert(green &gt;= 0 &amp;&amp; green &lt;= 255, "Invalid green component")
+        assert(blue &gt;= 0 &amp;&amp; blue &lt;= 255, "Invalid blue component")
+        
+        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+    }
+    
+    convenience init(hex: Int) {
+        self.init(red:(hex &gt;&gt; 16) &amp; 0xff, green:(hex &gt;&gt; 8) &amp; 0xff, blue:hex &amp; 0xff)
+    }
+    
+    convenience init(hex: String) {
+        let scanner = Scanner(string: hex)
+        scanner.scanLocation = 0
+        var rgbValue: UInt64 = 0
+        scanner.scanHexInt64(&amp;rgbValue)
+        
+        let r = (rgbValue &amp; 0xff0000) &gt;&gt; 16
+        let g = (rgbValue &amp; 0xff00) &gt;&gt; 8
+        let b = rgbValue &amp; 0xff
+        
+        self.init(
+            red: CGFloat(r) / 0xff,
+            green: CGFloat(g) / 0xff,
+            blue: CGFloat(b) / 0xff, alpha: 1
+        )
+    }
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>CD55A91D-42AF-4E7A-A460-1190CBDB1F10</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>create by Chung</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift - Extentions UIColor</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>

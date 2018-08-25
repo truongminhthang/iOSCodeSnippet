@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>extentionsUILabel</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>extension UILabel {
+    
+    override open func awakeFromNib() {
+        super.awakeFromNib()
+        
+        // set localized text
+        if text != nil {
+            text = text!.localizable()
+        }
+    }
+    
+    func setStrikethrough(text: String?, color: UIColor) {
+        let attributedText = NSAttributedString(string: text ?? "", attributes: [
+            .strikethroughStyle: NSUnderlineStyle.styleSingle.rawValue,
+            .strikethroughColor: color])
+        self.attributedText = attributedText
+    }
+    
+    func setText(_ text: String?, withAnimation time: CFTimeInterval) {
+        fadeTransition(time)
+        self.text = text
+    }
+    
+    func setText(_ text: String?, andColor color: UIColor) {
+        self.text = text
+        textColor = color
+    }
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>7D176500-087E-4ACF-9A7C-731B0CF910B6</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>create by Chung</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift - Extentions UILabel</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
