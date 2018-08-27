@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>Regex</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>class Regex {
+    
+    static let imagePattern = "(.+?)\\.(gif|jpg|jpeg|png|bmp)$"
+    static let imageTagPattern = "&lt;img(.+?)src=\"([^\"](.+?))\"(.+?)[/]?&gt;"
+    
+    static let audioPattern = "(.*?)\\.(mp3)$"
+    static let datatagPattern = "data-src-mp3=\"(.*?)\""
+    static let urlPattern = "(?:(?:https?|ftp|file):\\/\\/|www\\.|ftp\\.)(?:\\([-A-Z0-9+&amp;@#/%=~_|$?!:,.]*\\)|[-A-Z0-9+&amp;@#/%=~_|$?!:,.])*(?:\\([-A-Z0-9+&amp;@#/%=~_|$?!:,.]*\\)|[A-Z0-9+&amp;@#/%=~_|$])"
+    
+    static let urlGoogleImagePattern = "(?:https?|ftp|file)(:\\/\\/encrypted-tbn0.gstatic.com)(?:\\([-A-Z0-9+&amp;@#/%=~_|$?!:,.]*\\)|[-A-Z0-9+&amp;@#/%=~_|$?!:,.])*(?:\\([-A-Z0-9+&amp;@#/%=~_|$?!:,.]*\\)|[A-Z0-9+&amp;@#/%=~_|$])"
+    
+    static let titlePattern = "&lt;title(.*?)&gt;(.*?)&lt;/title&gt;"
+    static let metatagPattern = "&lt;meta(.*?)&gt;"
+    static let metatagContentPattern = "content=(\"(.*?)\")|('(.*?)')"
+    static let cannonicalUrlPattern = "([^\\+&amp;#@%\\?=~_\\|!:,;]+)"
+    static let rawTagPattern = "&lt;[^&gt;]+&gt;"
+    static let inlineStylePattern = "&lt;style(.*?)&gt;(.*?)&lt;/style&gt;"
+    static let inlineScriptPattern = "&lt;script(.*?)&gt;(.*?)&lt;/script&gt;"
+    static let linkPattern = "&lt;link(.*?)&gt;"
+    static let scriptPattern = "&lt;script(.*?)&gt;"
+    static let commentPattern = "&lt;!--(.*?)--&gt;"
+    static let hrefPattern = ".*href=\"(.*?)\".*"
+    static let spanPattern = "&lt;span(.*?)&gt;(.*?)&lt;/span&gt;"
+    static let divPattern = "&lt;div(.*?)&gt;(.*?)&lt;/div&gt;"
+    static let divPronPattern = "&lt;div class=\"pron-gs ei-g\".*&gt;(.*?)&lt;/div&gt;"
+    static let spanPhonPattern = "&lt;span class=\"phon\".*&gt;(.*?)&lt;/span&gt;"
+    static let spanSeparator = "&lt;span class=\"wrap\"&gt;(.*?)&lt;span class=\"separator\"&gt;"
+    
+    static let spanExpamlePattern = "&lt;span class=\"x\"(.*?)&gt;(.*?)&lt;/span&gt;"
+    static let spanBre = "&lt;span class=\"bre\"&gt;(.*?)&lt;div class=\"sound audio_play_button pron-uk icon-audio\""
+    static let spanName = "&lt;span class=\"name\"&gt;(.*?)&lt;div class=\"sound audio_play_button pron-us icon-audio\""
+    
+    static let aTopicPattern = "&lt;a class=\"topic\"(.*?)&gt;"
+    
+    static func divPattern(with `class`: String) -&gt; String {
+        return "&lt;div class=\"\(`class`)\".*&gt;(.*?)&lt;/div&gt;"
+    }
+    
+    static func divSoundPronunciationPattern(_ pronunciation: String) -&gt; String {
+        return "&lt;div class=\"sound audio_play_button \(pronunciation == "bre" ? "pron-uk" : "pron-us") icon-audio\"(.*?)&gt;"
+    }
+    
+    static func spanPronunciationPatern(_ pronunciation: String) -&gt; String {
+        return "&lt;span class=\"\(pronunciation)\"&gt;(.*?)&lt;span class=\"separator\"&gt;/&lt;/span&gt;&lt;/span&gt;"
+    }
+    
+    static func spanPattern(with `class`: String) -&gt; String {
+        return "&lt;span class=\"\(`class`)\".*&gt;(.*?)&lt;/span&gt;"
+    }
+    
+    static func pregMatchFirst(_ string: String, regex: String, index: Int = 0) -&gt; String? {
+        
+        do{
+            
+            let rx = try NSRegularExpression(pattern: regex, options: [.caseInsensitive])
+            
+            if let match = rx.firstMatch(in: string, options: [], range: NSMakeRange(0, string.count)) {
+                
+                var result: [String] = stringMatches([match], text: string, index: index)
+                return result.count == 0 ? nil : result[0]
+                
+            } else {
+                return nil
+            }
+            
+        } catch {
+            return nil
+        }
+    }
+    
+    static func pregMatchAll(_ string: String, regex: String, index: Int = 0) -&gt; [String] {
+        
+        do {
+            
+            let rx = try NSRegularExpression(pattern: regex, options: [.caseInsensitive])
+            
+            let matches: [NSTextCheckingResult] = rx.matches(in: string, options: [], range: NSMakeRange(0, string.count))
+            
+            return !matches.isEmpty ? stringMatches(matches, text: string, index: index) : []
+            
+        } catch {
+            
+            return []
+            
+        }
+        
+    }
+    // Extract matches from string
+    static func stringMatches(_ results: [NSTextCheckingResult], text: String, index: Int = 0) -&gt; [String] {
+        
+        return results.map {
+            let range = $0.range(at: index)
+            if text.count &gt; range.location + range.length {
+                return (text as NSString).substring(with: range)
+            } else {
+                return "\(range.location) + \(range.length) ----- \(text.count)"
+            }
+        }
+        
+    }
+    static func tagPattern(_ tag: String) -&gt; String {
+        
+        return "&lt;" + tag + "(.*?)&gt;(.*?)&lt;/" + tag + "&gt;"
+        
+    }
+
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>4C53A9E6-C284-42D1-99C0-46493C935E47</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>create by Chung</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift - Regex</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
