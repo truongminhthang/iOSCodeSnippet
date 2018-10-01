@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>upload image</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>enum ImageType: String {
+    case jpg
+    case png
+}
+
+class UpLoadHepler {
+    
+    static let shared = UpLoadHepler()
+    
+    func uploadFile(complete: @escaping ((String)-&gt;Void)) {
+        let api = URL(string: "http://127.0.0.1:8081/file_upload")
+        let boundary = generateBoundaryString()
+        var request = URLRequest(url: api!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 5)
+        request.httpMethod = "POST"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        request.httpBody = createBody(with: nil, filePathKey: "avatar", image: UIImage(named: "best")!, boundary: boundary)
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            guard let aData = data else { return }
+            guard let mes = String(data: aData, encoding: .utf8) else { return }
+            DispatchQueue.main.async {
+                complete(mes)
+            }
+        }
+        task.resume()
+
+    }
+    
+    private func createBody(with parameters: [String: String]?,
+                    filePathKey: String,
+                    image: UIImage?,
+                    type: ImageType = .jpg,
+                    filename: String = "image",
+                    boundary: String) -&gt; Data {
+        let body = NSMutableData()
+        let mimetype = "image/\(type.rawValue)"
+        let _fileName = "\(filename).\(type.rawValue)"
+        if parameters != nil {
+            for (key, value) in parameters! {
+                body.appendString("--\(boundary)\r\n")
+                body.appendString("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n")
+                body.appendString("\(value)\r\n")
+            }
+        }
+
+        if image != nil {
+            let imageData = (type == .jpg) ? UIImageJPEGRepresentation(image!, 1)! : UIImagePNGRepresentation(image!)!
+            print(mimetype, _fileName)
+            body.appendString("--\(boundary)\r\n")
+            body.appendString("Content-Disposition: form-data; name=\"\(filePathKey)\"; filename=\"\(_fileName)\"\r\n")
+            body.appendString("Content-Type: \(mimetype)\r\n\r\n")
+            body.append(imageData)
+            body.appendString("\r\n")
+            body.appendString("--\(boundary)--\r\n")
+        }
+
+        
+        return body as Data
+    }
+    
+    private func generateBoundaryString() -&gt; String {
+        return "Boundary-\(NSUUID().uuidString)"
+    }
+
+}
+
+extension NSMutableData {
+    
+    func appendString(_ string: String) {
+        let data = string.data(using: String.Encoding.utf8, allowLossyConversion: true)
+        append(data!)
+    }
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>9B3CCF60-4651-497D-B130-A1C9B94872C5</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>create by Chung</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Upload image to server</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
