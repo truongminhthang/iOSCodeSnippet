@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>
+import UIKit
+//import SystemConfiguration
+
+
+
+func showAlertToDeleteApp(title:String, message: String) {
+    showAlertCompelete(title: title, message: message, settingUrl: "App-prefs:root=General&amp;path=STORAGE_ICLOUD_USAGE/DEVICE_STORAGE")
+}
+func showAlertToOpenSetting( title:String, message: String) {
+    showAlertCompelete(title: title, message: message, settingUrl: UIApplicationOpenSettingsURLString)
+
+}
+
+func showAlert(title:String, message: String, completeHandler: (() -&gt; Void)? = nil) {
+    let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+    let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -&gt; Void in
+        completeHandler?()
+    }
+    alertController.addAction(okAction)
+    if let rootVC = UIApplication.shared.keyWindow?.rootViewController {
+        rootVC.present(alertController, animated: true, completion: nil)
+    }
+}
+
+func showAlertCompelete(title:String, message: String, settingUrl: String) {
+    let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+    let settingAction = UIAlertAction(title: "Setting", style: .cancel) { (_) -&gt; Void in
+        guard let settingsUrl = URL(string: settingUrl) else {
+            return
+        }
+        if UIApplication.shared.canOpenURL(settingsUrl) {
+            UIApplication.shared.open(settingsUrl, completionHandler: nil)
+        }
+    }
+    let okAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (result : UIAlertAction) -&gt; Void in
+    }
+    alertController.addAction(okAction)
+    alertController.addAction(settingAction)
+    if let rootVC = UIApplication.shared.keyWindow?.rootViewController {
+        rootVC.present(alertController, animated: true, completion: nil)
+    }
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>44C92137-575D-42FF-B8EC-E4DB2D9B2AC1</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Show Alert Helper</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
