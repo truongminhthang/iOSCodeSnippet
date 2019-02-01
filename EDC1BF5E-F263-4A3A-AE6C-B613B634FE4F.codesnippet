@@ -11,22 +11,45 @@
 	<key>IDECodeSnippetContents</key>
 	<string>
 /* // dat trong AppDelegate
- var reachability: Reachability! = {
- guard let reachability = Reachability(hostname: "google.com") else {
- return nil
- }
- NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged), name: .reachabilityChanged, object: reachability)
- return reachability
+ static var shared = {
+ return UIApplication.shared.delegate as! AppDelegate
  }()
  
+ var reachability : Reachability?
+ 
+ func setupReachability(callBack: ((Reachability) -&gt; ())? = nil) {
+ 
+ reachability?.stopNotifier()
+ reachability = Reachability(hostname: "www.google.com")
+ do {
+ if callBack != nil {
+ reachability?.whenUnreachable = callBack
+ } else {
+ reachability?.whenUnreachable = { reachability in
+ //                if reachability.connection == .cellular {
+ showAlertToOpenSetting(title: "Mở mạng cho tôi", message: "Chúng tôi cần dữ liệu để xem phim sex!")
+ //                }
+ }
+ }
+ try reachability?.startNotifier()
+ 
+ 
+ } catch {
+ print(error.localizedDescription)
+ }
+ }
+ 
  @objc func reachabilityChanged() {
+ guard let reachability = reachability else {return }
  switch reachability.connection {
- case .none:
+ case .none: break
  //showAlertToOpenSetting(title: "Cellular Data is Turned Off", message: "Turn on cellular data and allow app to access or use Wi-Fi to access data.")
  case .wifi:
  break
  case .cellular:
  break
+ 
+ 
  }
  }
  
@@ -326,6 +349,6 @@ fileprivate extension Reachability {
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
-	<integer>0</integer>
+	<integer>2</integer>
 </dict>
 </plist>
