@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>
+extension UIView {
+    func fill(in view: UIView) {
+        view.addSubview(self)
+        pinToSuperView(left: 0,top: 0,right: 0,bottom: 0)
+    }
+    
+    func equalTo(view: UIView) {
+        if translatesAutoresizingMaskIntoConstraints == true {
+            self.translatesAutoresizingMaskIntoConstraints = false
+        }
+        widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
+    }
+    
+    func setSize(width: CGFloat?, height: CGFloat?) {
+        if let width = width {
+            widthAnchor.constraint(equalToConstant: width).isActive = true
+        }
+        if let height = height {
+            heightAnchor.constraint(equalToConstant: height).isActive = true
+        }
+    }
+    
+    
+    func pinToSuperView(left: CGFloat?, top: CGFloat?, right: CGFloat?, bottom: CGFloat?) {
+        guard let view = superview else {return }
+        if translatesAutoresizingMaskIntoConstraints == true {
+            self.translatesAutoresizingMaskIntoConstraints = false
+        }
+        if let left = left {
+            leadingAnchor.constraint(equalTo: view.leadingAnchor,  constant: left).isActive = true
+        }
+        if let right = right {
+            trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: right).isActive = true
+        }
+        if let top = top {
+            topAnchor.constraint(equalTo: view.topAnchor, constant: top).isActive = true
+        }
+        if let bottom = bottom {
+            bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: bottom).isActive = true
+        }
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>EE39A575-77BA-41EB-A5ED-62A68E76FEE1</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>autolayout programmatically </string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
