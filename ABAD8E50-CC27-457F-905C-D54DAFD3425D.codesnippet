@@ -3,22 +3,19 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>viewDidLoad</string>
+	<string>bag</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>ClassImplementation</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>    override func viewDidLoad() {
-        super.viewDidLoad()
-        &lt;# Code#&gt;
-    }</string>
+	<string>let bag = DisposeBag()</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>00B6A5AA-96DC-4810-BF73-7DD9C4243296</string>
+	<string>ABAD8E50-CC27-457F-905C-D54DAFD3425D</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>View Did Load</string>
+	<string>bag</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

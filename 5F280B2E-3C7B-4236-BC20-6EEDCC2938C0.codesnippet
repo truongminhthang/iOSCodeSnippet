@@ -7,23 +7,19 @@
 		<string>ClassImplementation</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string> override func awakeFromNib() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(deviceDidRotate), name: UIDeviceOrientationDidChangeNotification, object: nil)
+	<string>    override func awakeFromNib() {
+        NotificationCenter.default.addObserver(self, selector: #selector(deviceDidRotate), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
     
-    func deviceDidRotate(notification: NSNotification) {
-        let orientation = UIDevice.currentDevice().orientation
-        if orientation == UIDeviceOrientation.Portrait || orientation == UIDeviceOrientation.PortraitUpsideDown {
-            &lt;#code#&gt;
-        } else {
-           &lt;#code#&gt;
-        }
+    @objc func deviceDidRotate(notification: NSNotification) {
+        let orientation = UIDevice.current.orientation
+        isPortrait = orientation == UIDeviceOrientation.portrait || orientation == UIDeviceOrientation.portraitUpsideDown
+        
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-</string>
+        NotificationCenter.default.removeObserver(self)
+    }</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>5F280B2E-3C7B-4236-BC20-6EEDCC2938C0</string>
 	<key>IDECodeSnippetLanguage</key>

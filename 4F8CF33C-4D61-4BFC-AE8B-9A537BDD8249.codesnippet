@@ -3,22 +3,27 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>viewDidLoad</string>
+	<string>datasource implement</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>ClassImplementation</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>    override func viewDidLoad() {
-        super.viewDidLoad()
-        &lt;# Code#&gt;
+	<string>    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -&gt; Int {
+        return list.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -&gt; UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = String(list[indexPath.row])
+        return cell 
     }</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>00B6A5AA-96DC-4810-BF73-7DD9C4243296</string>
+	<string>4F8CF33C-4D61-4BFC-AE8B-9A537BDD8249</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>View Did Load</string>
+	<string>datasource implement</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

@@ -3,22 +3,25 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>viewDidLoad</string>
+	<string>test view controller</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
-		<string>ClassImplementation</string>
+		<string>CodeBlock</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>    override func viewDidLoad() {
-        super.viewDidLoad()
-        &lt;# Code#&gt;
-    }</string>
+	<string> let sb = UIStoryboard(name: "Main", bundle: nil)
+    XCTAssertNotNil(sb, "Could not instantiate storyboard for Info View content loading")
+    guard let vc = sb.instantiateViewController(withIdentifier: "InformationView") as? InfoViewController else {
+      XCTAssert(false, "Could not instaniate view controller for Info View content loading")
+      return
+    }
+    _ = vc.view</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>00B6A5AA-96DC-4810-BF73-7DD9C4243296</string>
+	<string>121438E9-7AEB-4F51-96A1-8EB78F1F024D</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>View Did Load</string>
+	<string>test view controller</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

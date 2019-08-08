@@ -3,22 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>viewDidLoad</string>
+	<string>device id</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
-		<string>ClassImplementation</string>
+		<string>CodeExpression</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>    override func viewDidLoad() {
-        super.viewDidLoad()
-        &lt;# Code#&gt;
-    }</string>
+	<string>UIDevice.current.identifierForVendor!.uuidString</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>00B6A5AA-96DC-4810-BF73-7DD9C4243296</string>
+	<string>50A3546E-C2A1-4489-816B-966347FAC98F</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>View Did Load</string>
+	<string>device id</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
