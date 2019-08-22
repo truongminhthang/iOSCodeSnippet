@@ -7,33 +7,34 @@
 		<string>TopLevel</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>class BasePageVC: UIPageViewController, UIPageViewControllerDelegate {
+	<string>class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
+    
+    var selectedIndex: Int = 0 {
+        didSet {
+            jump(toIndex: selectedIndex, animated: true)
+        }
+    }
+    
+    var listViewController: [UIViewController] = [
+        RedViewController.instance,
+        BlueViewController.instance,
+        GreenViewController.instance
+    ]
+    
+    var indexDelegate: PageViewControllerDelegate?
     
     var currentViewController: UIViewController? {
-        return viewControllers?[0]
+        return viewControllers?.first
     }
+    
     var index : Int {
         guard currentViewController != nil else {
             return NSNotFound
         }
-        return modelController.indexOfViewController(currentViewController!)
+        return indexOfViewController(currentViewController!)
     }
     
-    var scrollView: UIScrollView! {
-        if _scrollView == nil {
-            for view in self.view.subviews {
-                if(view is UIScrollView) {
-                    _scrollView = (view as! UIScrollView)
-                }
-            }
-        }
-        
-        return _scrollView
-    }
-    
-    var startViewControllerIndex : Int {
-        return 0
-    }
+    var startViewControllerIndex : Int = 0
     
     private var _scrollView: UIScrollView? = nil
     
@@ -42,8 +43,8 @@
         // Do any additional setup after loading the view, typically from a nib.
         // Configure the page view controller and add it as a child view controller.
         delegate = self
-        dataSource = modelController
-        if let startingViewController: UIViewController = self.modelController.viewControllerAtIndex(startViewControllerIndex) {
+        dataSource = self
+        if let startingViewController: UIViewController = self.viewControllerAtIndex(startViewControllerIndex) {
             
             let viewControllers = [startingViewController]
             setViewControllers(viewControllers, direction: .forward, animated: false, completion: {done in })
@@ -55,24 +56,7 @@
         // Dispose of any resources that can be recreated.
     }
     
-    var modelController: BaseModelController! {
-        // Return the model controller object, creating it if necessary.
-        // In more complex implementations, the model controller may be passed to the view controller.
-      
-        return nil
-    }
-    
-    var _modelController: BaseModelController? = nil
-    
     // MARK: - UIPageViewController delegate methods
-    
-    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        
-    }
-    
-    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
-        
-    }
     
     func next() {
         jump(toIndex: index + 1)
@@ -86,23 +70,67 @@
         guard toIndex != NSNotFound &amp;&amp; toIndex &gt;= 0 else {
             return
         }
-        let direction : UIPageViewControllerNavigationDirection = toIndex &gt; index ? .forward : .reverse
-        if let viewController = modelController.viewControllerAtIndex(toIndex) {
+        let direction : UIPageViewController.NavigationDirection = toIndex &gt; index ? .forward : .reverse
+        if let viewController = viewControllerAtIndex(toIndex) {
             self.setViewControllers([viewController], direction: direction , animated: true, completion: {done in })
         }
     }
     
-    func jumpToOrderTaxi() {
-        jump(toIndex: 1, animated: false)
+    func viewControllerAtIndex(_ index: Int) -&gt; UIViewController? {
+        // Return the data view controller for the given index.
+        if (self.listViewController.count == 0) || (index &gt;= self.listViewController.count) || (index &lt; 0) {
+            return nil
+        }
+        return listViewController[index]
     }
     
-}</string>
+    func indexOfViewController(_ viewController: UIViewController) -&gt; Int {
+        return listViewController.firstIndex(of: viewController) ?? NSNotFound
+    }
+    
+    // MARK: - Page View Controller Data Source
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -&gt; UIViewController? {
+        var index = self.indexOfViewController(viewController)
+        if (index == 0) || (index == NSNotFound) {
+            return nil
+        }
+        index -= 1
+        return self.viewControllerAtIndex(index)
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -&gt; UIViewController? {
+        var index = self.indexOfViewController(viewController)
+        if index == NSNotFound {
+            return nil
+        }
+        index += 1
+        if index == self.listViewController.count {
+            return nil
+        }
+        return self.viewControllerAtIndex(index)
+    }
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        guard let vc = pendingViewControllers.first else {return}
+        indexDelegate?.setSelectedIndex(sender: self, selectedIndex: self.indexOfViewController(vc))
+    }
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if !completed {
+            guard let vc = previousViewControllers.first else {return}
+            indexDelegate?.setSelectedIndex(sender: self, selectedIndex: self.indexOfViewController(vc))
+        }
+        
+        
+    }
+    
+}
+</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>7B126EF6-C60F-40F1-B4C9-140AC2157038</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>Swift 3: class  base PageViewController to display Viewcontrollers</string>
+	<string>Swift 5: PageViewController</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
