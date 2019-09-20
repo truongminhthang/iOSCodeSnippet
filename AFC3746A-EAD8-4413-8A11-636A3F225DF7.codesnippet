@@ -8,6 +8,17 @@
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>//
+//  ToogleView.swift
+//  DependencyInjections
+//
+//  Created by Minh.Thang on 9/20/19.
+//  Copyright © 2019 Minh.Thang. All rights reserved.
+//
+
+import Foundation
+
+
+//
 //  ToggleViewProtocol.swift
 //  Hosee
 //
@@ -28,8 +39,51 @@ protocol ToggleViewProtocol: class {
     var isOpen: Bool {get set}
     var view: UIView! {get set}
     var coverAlpha: CGFloat {get set}
-
+    
 }
+
+class ContainerViewController: UIViewController, ToggleViewProtocol {
+    @IBOutlet var controlConstraint: NSLayoutConstraint!
+    
+    @IBOutlet var corverButton: UIButton!
+    
+    @IBOutlet var menu: UIView!
+    
+    @IBOutlet var effectView: UIVisualEffectView?
+    
+    var closeDistance: CGFloat = UIScreen.main.bounds.width * 0.8
+    
+    var showDistance: CGFloat = 0
+    
+    var isOpen: Bool =  true {
+        didSet {
+            performToggle(isOpen: isOpen)
+        }
+    }
+    
+    var coverAlpha: CGFloat = 0.8
+    
+    @IBAction func toggle(_ sender: Any) {
+        isOpen = !isOpen
+    }
+    
+    func registerNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(toggle(_:)), name: .toggleMenu, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+}
+
+
+class  HomeViewController : UIViewController {
+    @IBAction func onClickedMenu(_ sender: Any) {
+        NotificationCenter.default.post(name: .toggleMenu, object: nil, userInfo: nil)
+    }
+}
+
+
 extension ToggleViewProtocol {
     
     func performToggle(isOpen: Bool) {
@@ -37,7 +91,7 @@ extension ToggleViewProtocol {
         self.corverButton.alpha = self.isOpen ? self.coverAlpha : 0
         self.effectView?.alpha = self.isOpen ? self.coverAlpha : 0
         UIView.animate(withDuration: 0.35) {
-           
+            
             self.view.layoutIfNeeded()
         }
     }
@@ -59,14 +113,21 @@ extension ToggleViewProtocol {
     }
     
     
+    
+    
+}
+
+extension Notification.Name {
+    static let toggleMenu  = Notification.Name("toggleMenuDidTap")
+    
 }
 </string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>50956022-0BE1-49E9-B756-241C8FD548A2</string>
+	<string>AFC3746A-EAD8-4413-8A11-636A3F225DF7</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Generic</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>Toggle View Protocol</string>
+	<string>Toggle View Protocol </string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
