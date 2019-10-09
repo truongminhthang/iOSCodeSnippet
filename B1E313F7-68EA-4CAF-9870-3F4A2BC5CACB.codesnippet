@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>create datasource</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>
+class DataSource&lt;T&gt; : NSObject, UITableViewDataSource {
+   
+    var list: [T]
+    init(list: [T]) {
+        self.list = list
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -&gt; Int {
+        return list.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -&gt; UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = "\(list[indexPath.row])"
+        return cell
+    }
+    
+    func onDeleteAll(tableView: UITableView) {
+        guard let indexPaths = tableView.indexPathsForSelectedRows else {return }
+        let sortedIndexPath = indexPaths.sorted().reversed()
+        sortedIndexPath.forEach{ indexPath in
+            list.remove(at: indexPath.row)
+        }
+        
+        tableView.deleteRows(at: Array(sortedIndexPath), with: .automatic)
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>B1E313F7-68EA-4CAF-9870-3F4A2BC5CACB</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>DataSource</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
