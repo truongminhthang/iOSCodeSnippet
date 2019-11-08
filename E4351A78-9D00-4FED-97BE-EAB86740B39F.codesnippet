@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>upload data api </string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>    func &lt;#name#&gt;(sendingData: &lt;#SendingDataType#&gt;,
+               completion: @escaping (Result&lt;&lt;#Reponse#&gt;, Error&gt;) -&gt; Void,
+               isDebug: Bool = false
+    ) {
+        client.uploadData(request: &lt;#Type#&gt;RequestBuilder(urlCase: .&lt;#case#&gt;).build(),
+                          sendingData: sendingData,
+                          completion: completion,
+                          isDebug: isDebug
+        )
+    }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>E4351A78-9D00-4FED-97BE-EAB86740B39F</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Upload Data API</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
