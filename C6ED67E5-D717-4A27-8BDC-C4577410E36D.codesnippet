@@ -3,19 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>upload data repository</string>
+	<string>getdata repository</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 		<string>CodeBlock</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>func &lt;#functionName#&gt;(sendingData: &lt;#SendingDataType#&gt;,
-                          completion: @escaping (Result&lt;&lt;#ReponseDataType#&gt;, Error&gt;) -&gt; Void,
-                  isDebug: Bool = false
+	<string>    func &lt;#functionName#&gt;(completion: @escaping (Result&lt;&lt;#ReponseDataType#&gt;, Error&gt;) -&gt; Void,
+                          isDebug: Bool = false
     ) {
-        &lt;#api#&gt;.&lt;#functionName#&gt;(sendingData: sendingData,
-                                 completion: { (result: Result&lt;&lt;#ReponseDataType#&gt;, Error&gt;) in
+        &lt;#api#&gt;.&lt;#functionName#&gt;(completion: { (result: Result&lt;&lt;#ReponseDataType#&gt;, Error&gt;) in
                                     &lt;#code#&gt;
                                     completion(result)
         },
@@ -23,13 +21,13 @@
         )
     }</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>B14ACAA8-C45D-480C-B854-15935A57C6FD</string>
+	<string>C6ED67E5-D717-4A27-8BDC-C4577410E36D</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetSummary</key>
 	<string></string>
 	<key>IDECodeSnippetTitle</key>
-	<string>upload data repository</string>
+	<string>getdata repository</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

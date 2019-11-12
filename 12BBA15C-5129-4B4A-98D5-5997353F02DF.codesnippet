@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>loadmore in api </string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>  func &lt;#name#&gt;(query: String?,
+                  completion: @escaping (Result&lt;[&lt;#Model#&gt;], Error&gt;) -&gt; Void,
+                  isDebug: Bool = false
+    ) {
+        var nextPage : Int?
+        var total: Int?
+        var items: [&lt;#Model#&gt;] = []
+        let isFirstTime = (nextPage == nil &amp;&amp; total == nil)
+        let hasItemLeft = items.count &lt; (total ?? 0)
+        if  isFirstTime || hasItemLeft {
+
+            client.getData(request: &lt;#Type#&gt;RequestBuilder(urlCase: .&lt;#case#&gt;).build(),
+                           completion: {(result: Result&lt;&lt;#Reponse#&gt;, Error&gt; ) in
+                            switch result {
+                               case .success(let response):
+                                   nextPage = response.metadata.page + 1
+                                   total = response.metadata.total
+                                   self.items += response.&lt;#items#&gt;
+                                   completion(.success(self.items))
+                               case .failure(let error):
+                                   completion(.failure(error))
+                               }},
+                           isDebug: isDebug
+            )
+        }
+    }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>12BBA15C-5129-4B4A-98D5-5997353F02DF</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>loadmore in api</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

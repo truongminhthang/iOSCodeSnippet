@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>switchresult</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeExpression</string>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string> switch result {
+ case .success(let &lt;#var#&gt;):
+    XCTAssertEqual(&lt;#var#&gt;, &lt;#expectResult#&gt;)
+ case .failure(let error):
+    switch error {
+    case is CombineResponseErrorAndData:
+        if let errorCode = try? result.getErrorCode() {
+            switch errorCode {
+            case HttpResponseError.unauthorized:
+                
+                struct ChangePassworError: Codable {
+                    let error: Message
+                    struct Message: Codable {
+                        let message: String
+                    }
+                }
+                
+                let dataError = try? result.getErrorData() as ChangePassworError?
+                
+                print(dataError?.error.message as Any)
+                
+            default:
+                if let json = try? result.getErrorJson() {
+                    print(json)
+                }
+                
+            }
+        }
+        
+    default:
+        print(error)
+    }
+ }
+ 
+ expectation.fulfill()
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>850E8120-5ABC-4C3E-A319-212CE9E8E4E3</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>switch result</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>

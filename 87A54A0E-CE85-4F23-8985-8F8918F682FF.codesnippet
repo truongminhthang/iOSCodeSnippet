@@ -3,21 +3,31 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>mark</string>
+	<string>getdata api</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
+		<string>CodeBlock</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>// MARK: - &lt;#Section#&gt;</string>
+	<string> func &lt;#name#&gt;(completion: @escaping (Result&lt;&lt;#Reponse#&gt;, Error&gt;) -&gt; Void,
+                  isDebug: Bool = false
+    ) {
+    let request =  &lt;#Type#&gt;RequestBuilder(urlCase: .&lt;#case#&gt;).build()
+
+        client.getData(request: request,
+                          completion: completion,
+                          isDebug: isDebug
+        )
+    }       </string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>7329708D-DA17-4129-A8F9-A780DFA5FAE1</string>
+	<string>87A54A0E-CE85-4F23-8985-8F8918F682FF</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>Divider label for separating code into sections</string>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
-	<string>Swift Mark:</string>
+	<string>getdata api</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
