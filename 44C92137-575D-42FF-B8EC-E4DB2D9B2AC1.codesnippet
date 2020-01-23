@@ -19,13 +19,21 @@
 
 import UIKit
 
-
-func showAlertToOpenAppSetting(viewController: UIViewController? = nil, title:String, message: String) {
-    showAlertCompelete(viewController: viewController, title: title, message: message, settingUrl: UIApplication.openSettingsURLString)
-    
+func showAlertToOpenAppSetting(viewController: UIViewController? = nil,
+title: String, message: String) -&gt; UIAlertController {
+    return showAlertCompelete(viewController: viewController,
+    title: title,
+    message: message,
+    settingUrl: UIApplication.openSettingsURLString)
 }
 
-func showCustomAlert(viewController: UIViewController? = nil, title:String, message: String, okTitle: String, cancleTitle: String? = nil, okHandle: (() -&gt; ())? = nil, cancleHandle: (() -&gt; ())? = nil) {
+func showCustomAlert(viewController: UIViewController? = nil,
+title: String,
+message: String,
+okTitle: String,
+cancleTitle: String? = nil,
+okHandle: (() -&gt; Void)? = nil,
+cancleHandle: (() -&gt; Void)? = nil) -&gt; UIAlertController {
     let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
     let okAction = UIAlertAction(title: okTitle, style: .default, handler: { (_) in
         okHandle?()
@@ -42,11 +50,15 @@ func showCustomAlert(viewController: UIViewController? = nil, title:String, mess
     } else {
         UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
     }
+    return alertController
 }
 
-func showAlert(viewController: UIViewController? = nil, title:String, message: String, completeHandler: (() -&gt; Void)? = nil) {
+func showAlert(viewController: UIViewController? = nil,
+title: String,
+message: String,
+completeHandler: (() -&gt; Void)? = nil) -&gt; UIAlertController {
     let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-    let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel) { (result : UIAlertAction) -&gt; Void in
+    let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel) { (result: UIAlertAction) -&gt; Void in
         completeHandler?()
     }
     alertController.addAction(okAction)
@@ -55,34 +67,48 @@ func showAlert(viewController: UIViewController? = nil, title:String, message: S
     } else {
         UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
     }
+    
+    return alertController
 }
 
-func showAlertCompelete(viewController: UIViewController? = nil, title:String, message: String, settingUrl: String) {
+func showAlertCompelete(viewController: UIViewController? = nil,
+title: String,
+message: String,
+settingUrl: String) -&gt; UIAlertController {
+    
     let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
     let settingAction = UIAlertAction(title: "Setting", style: .cancel) { (_) -&gt; Void in
         guard let settingsUrl = URL(string: settingUrl) else {
             return
         }
         if UIApplication.shared.canOpenURL(settingsUrl) {
+            if #available(iOS 10.0, *) {
             UIApplication.shared.open(settingsUrl, completionHandler: nil)
+        } else {
+            UIApplication.shared.openURL(settingsUrl)
         }
     }
-    let okAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default) { (result : UIAlertAction) -&gt; Void in
-    }
-    alertController.addAction(okAction)
-    alertController.addAction(settingAction)
-    if let viewController = viewController {
-        viewController.present(alertController, animated: true, completion: nil)
-    } else {
-        UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
-    }
 }
-
+let okAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default) { (result: UIAlertAction) -&gt; Void in
+}
+alertController.addAction(okAction)
+alertController.addAction(settingAction)
+if let viewController = viewController {
+    viewController.present(alertController, animated: true, completion: nil)
+} else {
+    UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
+}
+return alertController
+}
 </string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>44C92137-575D-42FF-B8EC-E4DB2D9B2AC1</string>
 	<key>IDECodeSnippetLanguage</key>
-	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift 4.2: Show Alert</string>
 	<key>IDECodeSnippetUserSnippet</key>

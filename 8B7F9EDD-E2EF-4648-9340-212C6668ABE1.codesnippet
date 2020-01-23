@@ -6,13 +6,13 @@
 	<string>prepare for segue</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
-		<string>ClassImplementation</string>
+		<string>CodeBlock</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>    // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier ?? "" {
-        case SegueIdentifier.&lt;#id#&gt;:
+        case "&lt;#id#&gt;":
             &lt;#code#&gt;
         default:
             return
@@ -22,6 +22,8 @@
 	<string>8B7F9EDD-E2EF-4648-9340-212C6668ABE1</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>Swift: Prepare for segue</string>
 	<key>IDECodeSnippetUserSnippet</key>

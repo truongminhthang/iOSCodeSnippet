@@ -3,22 +3,25 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>get controller thought navigation</string>
+	<string>LiveData combo</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
-		<string>CodeExpression</string>
+		<string>All</string>
+		<string>ClassImplementation</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>let nav = segue.destination as! UINavigationController
-let vc = nav.topViewController as! &lt;#ViewController#&gt;</string>
+	<string>    private var _&lt;#livedata#&gt; = MutableLiveData&lt;&lt;#Type#&gt;&gt;(&lt;#initValue#&gt;)
+    var &lt;#livedata#&gt;: LiveData&lt;&lt;#Type#&gt;&gt; {
+        return _&lt;#livedata#&gt;
+    }</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>48DC2A71-7770-4845-BD08-786FB263C251</string>
+	<string>90A0DC8E-55CD-4FDD-A8A5-DBAB2CECA7E0</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetSummary</key>
 	<string></string>
 	<key>IDECodeSnippetTitle</key>
-	<string>Swift: get viewcontroller through navigation by segue</string>
+	<string>LiveData combo</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
